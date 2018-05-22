@@ -11,25 +11,26 @@
 			<img ng-src="sources/img/Locations_yel.png" style="" class="md-media-sm card-media"/>
 		</md-card-title-media>
 	</md-card-title>
-	</md-card>
-</div> -->
+	</md-card>-->
+</div> 
 
 <div layout="column" layout-align="center center" ng-controller="TestCtrl">
 		<!-- <img class="vcalogo2"  hide-gt-sm flex src="sources/img/vcalogo_blue.png"/>
 		<img class="drop" hide show-gt-sm flex src="sources/img/vcalogo_blue.png"/> -->
 
-
 	<input type="text" id="Autocomplete" ng-model="autocomplete" 
-      class="style-4" ng-autocomplete options="options1" details="details1" initial-address="initialAddress" placeholder = "ENTER NAME OR ADDRESS"/>
+      class="style-4" ng-autocomplete options="options1" details="details1" initial-address="initialAddress" placeholder = "SEARCH NAME OR ADDRESS"/>
 	<br>
 	
+
 	
   <footer>
         <div layout="column" layout-align="center center">
-            <md-button class='btn2' ng-click="save()">
+
+           <md-button class="btn2" ng-click="save()">
             	search
             </md-button>
-            <md-button class='btn1' ng-click="goBack()">
+            <md-button class="btn1" ng-click="goBack()">
             	back
             </md-button>
         </div>
