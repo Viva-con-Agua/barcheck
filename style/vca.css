@@ -205,7 +205,8 @@ html {
   width:90%;
 }
 
-.btn1 {
+
+.btn2 {
 	background-color:rgb(63, 170, 210);
 	color: #EEEEEE;
 	font-size: 20px;
@@ -220,7 +221,7 @@ html {
 	width: 260px;
 }
 
-.btn2 {
+.btn1 {
 	background-color: #EEEEEE; /* White */
 	color:rgb(41, 90, 120);  /* Text */
 	font-size: 20px;
