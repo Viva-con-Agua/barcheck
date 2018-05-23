@@ -1,6 +1,10 @@
 app.controller('mapController', function($scope, $element, NgMap) {
 
 	$scope.showNavigation(true);
+	$scope.showMarkers = true;
+
+	// create an empty variable for the categories which will be selected
+	var selectedCategories = [];
 
 	$scope.initMarkerClusterer = function() {
 		/*var markers = $scope.locatons.map(function (location) {
@@ -10,6 +14,20 @@ app.controller('mapController', function($scope, $element, NgMap) {
 			imagePath: 'https://cdn.rawgit.com/googlemaps/js-marker-clusterer/gh-pages/images/m'
 		};
 		$scope.markerCluster = new MarkerClusterer($scope.map, $scope.markers, mcOptions);
+		$scope.initAllLocations();
+	
+	};
+
+	$scope.initAllLocations = function() {
+		var location = {};
+		for (var i = 0; i < $scope.allLocations.length; i++) {
+			location = $scope.allLocations[i];
+			$scope.createMarker(location);
+		}
+
+		if ($scope.markers.length !== 0) {
+			$scope.markerCluster.addMarkers($scope.markers);
+		}
 	};
 
 	// define the array of categories
@@ -28,8 +46,7 @@ app.controller('mapController', function($scope, $element, NgMap) {
 		ev.stopPropagation();
 	});
 
-	// create an empty variable for the categories which will be selected
-	var selectedCategories = [];
+	 $scope.showMarkers = true;
 
 	$scope.filterChanged = function(category) {
 		var idx = selectedCategories.indexOf(category);
@@ -79,14 +96,14 @@ app.controller('mapController', function($scope, $element, NgMap) {
 	};
 
 	NgMap.getMap().then(function(map) {
-		
+
 		/* NOTE: This fix determines the position (or sets default) first and then assigns
 				 map to $scope.map
 				
 				 The position is handed over to the ngMap 'center' property through
 				 $scope.latitude and $scope.longitude
 		*/
-		
+
 		function getMarkers() {
 			$.ajax({
 				type: "GET",

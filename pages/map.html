@@ -10,6 +10,7 @@
     <div layout="row">
       <md-input-container>
         <label>SELECT CATEGORIES</label>
+        	
         <md-select ng-model="selectedVegetables"
                    md-on-close="clearSearchTerm()"
                    data-md-container-class="selectdemoSelectHeader"
@@ -20,7 +21,7 @@
                    placeholder="Search for a category.."
                    class="demo-header-searchbox md-text">
           </md-select-header>
-          <md-optgroup label="vegetables">
+          <md-optgroup label="vegetables">       
             <md-option ng-value="category" ng-repeat="category in categories |
               filter:searchTerm" ng-click="filterChanged(category)">{{category}}</md-option>
           </md-optgroup>
