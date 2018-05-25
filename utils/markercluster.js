@@ -7,6 +7,7 @@ app.controller('mapController', function($scope, $element, NgMap) {
 	var selectedCategories = [];
 
 	$scope.initMarkerClusterer = function() {
+		$scope.zoomLevel = 10;
 		/*var markers = $scope.locatons.map(function (location) {
 		    return $scope.createMarker(location);
 		});*/
@@ -15,9 +16,9 @@ app.controller('mapController', function($scope, $element, NgMap) {
 		};
 		$scope.markerCluster = new MarkerClusterer($scope.map, $scope.markers, mcOptions);
 		$scope.initAllLocations();
-	
 	};
 
+// Default map with all locations
 	$scope.initAllLocations = function() {
 		var location = {};
 		for (var i = 0; i < $scope.allLocations.length; i++) {
@@ -31,7 +32,6 @@ app.controller('mapController', function($scope, $element, NgMap) {
 	};
 
 	// define the array of categories
-
 	//	$scope.categories = [0, 1, 2, 3, 4, 5];
 	$scope.categories = ['bar', 'club', 'café', 'restaurant', 'shop', 'other'];
 	$scope.selected = ['bar'];
@@ -132,6 +132,27 @@ app.controller('mapController', function($scope, $element, NgMap) {
 			// at the end load markers
 			getMarkers();
 		}
+		
+		//function for search box 
+		$scope.placeMarker = function(){
+			var place = this.getPlace();  //get selected place 
+			 console.log(this.getPlace());  
+        	var loc = this.getPlace().geometry.location;
+            $scope.latlng = [loc.lat(), loc.lng()];
+            $scope.center = [loc.lat(), loc.lng()];
+            if(this.getPlace().types.indexOf("establishment") > -1) {
+            	// establishment --> higher zoom
+            	map.setZoom(20);
+            } else {
+            	// geocode --> less zoom
+            	map.setZoom(10);
+            }
+			
+			$scope.longitude = loc.lng();
+			$scope.latitude =  loc.lat();
+           
+
+	};
 
 		function errorHandler() {
 			// set position to Hamburg

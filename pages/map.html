@@ -39,13 +39,18 @@
 <style>
   ng-map#custom3 {display:block; height:40em; padding-top: 3%;} /* IPAD - not in use*/
 </style>
+
    <!-- <div hide-gt-xs flex>-->
-    <ng-map id="custom1" default-style="false" center="[{{latitude}}, {{longitude}}]" zoom="13">
+   <!-- Search Box -->
+<input id=searchBox places-auto-complete types="['establishment', 'geocode']" on-place-changed="placeMarker()" placeholder = "Search Box"/>
+    <ng-map id="custom1" default-style="false" center="[{{latitude}}, {{longitude}}]" zoom="{{zoomLevel}}">
         <info-window id="myInfoWindow" position="current-location">
             <div ng-non-bindable>
                 <h4>{{selectedLocation.NAME}}</h4>
             </div>
         </info-window>
+
     </ng-map>
+
     </div>
 </div>
