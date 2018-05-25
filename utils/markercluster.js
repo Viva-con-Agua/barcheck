@@ -136,22 +136,25 @@ app.controller('mapController', function($scope, $element, NgMap) {
 		//function for search box 
 		$scope.placeMarker = function(){
 			var place = this.getPlace();  //get selected place 
-			 console.log(this.getPlace());  
+			console.log(this.getPlace());  
         	var loc = this.getPlace().geometry.location;
             $scope.latlng = [loc.lat(), loc.lng()];
             $scope.center = [loc.lat(), loc.lng()];
             if(this.getPlace().types.indexOf("establishment") > -1) {
             	// establishment --> higher zoom
             	map.setZoom(20);
-            } else {
+            } else if(this.getPlace().types.indexOf("route") > -1) {
+            	// establishment --> higher zoom
+            	map.setZoom(15);
+            }else if(this.getPlace().types.indexOf("sublocality") > -1) {
+            	// establishment --> higher zoom
+            	map.setZoom(15);
+            }else {
             	// geocode --> less zoom
             	map.setZoom(10);
             }
-			
 			$scope.longitude = loc.lng();
 			$scope.latitude =  loc.lat();
-           
-
 	};
 
 		function errorHandler() {
