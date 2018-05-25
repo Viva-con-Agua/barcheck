@@ -142,12 +142,12 @@ app.controller('mapController', function($scope, $element, NgMap) {
             $scope.center = [loc.lat(), loc.lng()];
             if(this.getPlace().types.indexOf("establishment") > -1) {
             	// establishment --> higher zoom
-            	map.setZoom(20);
+            	map.setZoom(17);
             } else if(this.getPlace().types.indexOf("route") > -1) {
-            	// establishment --> higher zoom
+            	// route --> higher zoom
             	map.setZoom(15);
             }else if(this.getPlace().types.indexOf("sublocality") > -1) {
-            	// establishment --> higher zoom
+            	// sublocality --> higher zoom
             	map.setZoom(15);
             }else {
             	// geocode --> less zoom
