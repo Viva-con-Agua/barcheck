@@ -1,6 +1,15 @@
 app.controller('MainController', ['$state', '$scope', '$mdDialog', '$timeout', '$state', '$mdSidenav', 'locationService', '$rootScope',
 	'progressService', '$http', 'AUTH_EVENTS',
 	function($state, $scope, $mdDialog, $timeout, $state, $mdSidenav, locationService, $rootScope, progressService, $http, AUTH_EVENTS) {
+		
+		
+		var show_dialog = false;
+		/*
+			This option is for development mode only!
+			Remove my commit from May 28 2018 before deployment!
+		*/
+		
+		
 		var showLoginDialog = function(ev) {
 			$mdDialog.show({
 				controller: 'LoginCtrl',
@@ -12,7 +21,11 @@ app.controller('MainController', ['$state', '$scope', '$mdDialog', '$timeout', '
 		};
 
 		var setCurrentUser = function() {
-			$scope.currentUser = $rootScope.currentUser;
+			if ($scope.currentUser) {
+				$scope.currentUser = $rootScope.currentUser;	
+			} else {
+				$scope.currentUser = "DEV: NO USER";
+			}
 			$state.go('home'); //home
 			$mdDialog.hide();
 		};
@@ -41,11 +54,15 @@ app.controller('MainController', ['$state', '$scope', '$mdDialog', '$timeout', '
 		//showLoginDialog()
 
 		$scope.logout = function() {
-			firebase.auth().signOut().then(function() {
-				$rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
-			}).catch(function(error) {
-				// TBD
-			});
+			if (show_dialog == true) {
+				firebase.auth().signOut().then(function() {
+					$rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
+				}).catch(function(error) {
+					// TBD
+				});	
+			} else {
+				$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+			}
 		};
 
 		$scope.toggleLeft = buildToggler('left');
