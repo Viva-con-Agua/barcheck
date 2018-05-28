@@ -175,9 +175,14 @@ app.controller('WaterDecisionCtrl', ['$scope', '$state', 'locationService', 'des
 		}
 		return 0;
 	};
+	
+	$scope.makeComment = function(){
+	locationService.setBottletypes($scope.B_330GLAS, $scope.B_500PET, $scope.B_750GLAS, $scope.B_1000PET, $scope.B_750TRIO, $scope.B_750PET);
+	$state.go('locations-comment');
+	};
 
 	$scope.sendSupporter = function() {
-		locationService.setBottletypes($scope.B_330GLAS, $scope.B_500PET, $scope.B_750GLAS, $scope.B_1000PET, $scope.B_750TRIO, $scope.B_750PET);
+		//locationService.setBottletypes($scope.B_330GLAS, $scope.B_500PET, $scope.B_750GLAS, $scope.B_1000PET, $scope.B_750TRIO, $scope.B_750PET);
 		$state.go('locations-create-summary');
 	};
 
@@ -276,6 +281,15 @@ app.controller('WaterDecisionCtrl', ['$scope', '$state', 'locationService', 'des
 
 }]);
 
+app.controller('CommentCtrl', ['$scope', '$state', 'locationService', 'designService', 'historyService', function($scope, $state,
+	locationService) {
+	$scope.sendSupporter = function(event) {
+		//locationService.setBottletypes($scope.B_330GLAS, $scope.B_500PET, $scope.B_750GLAS, $scope.B_1000PET, $scope.B_750TRIO, $scope.B_750PET);
+		locationService.setComment($scope.commentModel); 
+		$state.go('locations-create-summary');
+	};
+}]);
+
 app.controller('SummaryController', ['$scope', '$state', 'locationService', 'historyService', function($scope, $state, locationService,
 	historyService) {
 	$scope.waterDecision = locationService.getWaterDecision();
@@ -327,7 +341,8 @@ app.controller('SummaryController', ['$scope', '$state', 'locationService', 'his
 			TRIO_750: locationService.getLocation().TRIO_750,
 			PET_750: locationService.getLocation().PET_750,
 			WHY_NOT: locationService.getLocation().reasonNoIndex,
-			WHY_NOT_BEFORE: locationService.getLocation().reasonYesIndex
+			WHY_NOT_BEFORE: locationService.getLocation().reasonYesIndex,
+			COMMENT: locationService.getLocation().comment
 		});
 
 		// POST
@@ -645,7 +660,8 @@ app.controller('locationsDetailCtrl', ['$rootScope', '$scope', '$state', '$mdDia
 				LATITUDE: locationService.getSelectedLocation().latitude,
 				LONGITUDE: locationService.getSelectedLocation().longitude,
 				WHY_NOT: locationService.getLocation().reasonNoIndex,
-				WHY_NOT_BEFORE: locationService.getLocation().reasonYesIndex
+				WHY_NOT_BEFORE: locationService.getLocation().reasonYesIndex,
+				COMMENT: locationService.getLocation().comment
 			});
 
 			// PUT

@@ -205,6 +205,21 @@ html {
   width:90%;
 }
 
+.style-8 {
+  padding: 20px;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border: none;
+  font-family: 'lato';
+  font-weight: bold;
+  font-size: 12pt;
+  border-bottom: solid 2px;
+  border-bottom-color: rgb(230, 131, 82);
+  transition: border 0.2s;
+  background: transparent;
+  width:90%;
+}
+
 .btn2 {
 	background-color:rgb(63, 170, 210);
 	color: #EEEEEE;
@@ -387,5 +402,3 @@ h3.update {
 #searchBox:focus {
 border-color: #4d90fe;
 }
-
-   

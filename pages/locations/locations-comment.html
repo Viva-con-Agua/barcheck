@@ -1,0 +1,23 @@
+<div layout="column" layout-align="center center">
+	<img class="vcalogo4 flex" src="sources/img/header/this_is_create_location_4.png"/>
+	  <div layout="column" layout-align="center center">
+		 <h3 class=" textcenter why textGrayBlue">Do you have comments?</h3>
+  </div>
+</div> 
+
+<div layout="column" layout-align="center center" ng-controller="CommentCtrl">
+	<input id="comment" type="text" class="style-8" placeholder = "Comment" ng-model = "commentModel"/>
+	<br>
+	
+  <footer>
+        <div layout="column" layout-align="center center">
+
+           <md-button class="btn2" ng-click="sendSupporter($event)">
+            	continue
+            </md-button>
+            <md-button class="btn1" ng-click="goBack()">
+            	back
+            </md-button>
+        </div>
+   </footer>
+</div>

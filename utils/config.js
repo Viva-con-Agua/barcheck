@@ -134,6 +134,9 @@ app.config(['$stateProvider', '$mdThemingProvider', 'uiGmapGoogleMapApiProvider'
 		.state('locations-water-selection', {
 			templateUrl: 'pages/locations/locations-water-selection.html'
 		})
+		.state('locations-comment', {
+			templateUrl: 'pages/locations/locations-comment.html'
+		})
 		.state('locations-no-water', {
 			templateUrl: 'pages/locations/locations-no-water.html'
 		})
@@ -152,4 +155,5 @@ app.config(['$stateProvider', '$mdThemingProvider', 'uiGmapGoogleMapApiProvider'
 		.state('feedback', {
 			templateUrl: 'pages/feedback.html'
 		});
+		
 }]);

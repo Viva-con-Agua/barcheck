@@ -11,6 +11,11 @@ app.service('locationService', function($state) {
 			longitude: lng
 		};
 	}; 
+	
+	ls.setComment = function(comment) {
+		ls.oLocation.comment = comment;
+	};
+
 
 	ls.getAddressAsString = function() {
 		return ls.oLocation.address.street + ", " + ls.oLocation.address.city + ", Deutschland";
@@ -311,7 +316,7 @@ app.service('locationService', function($state) {
 			reasons: reasons
 		};
 	};
-
+	
 	ls.getWaterDecision = function() {
 		return ls.oLocation.waterDecision;
 	};
