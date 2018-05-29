@@ -10,12 +10,11 @@ app.service('locationService', function($state) {
 			latitude: lat,
 			longitude: lng
 		};
-	}; 
-	
+	};
+
 	ls.setComment = function(comment) {
 		ls.oLocation.comment = comment;
 	};
-
 
 	ls.getAddressAsString = function() {
 		return ls.oLocation.address.street + ", " + ls.oLocation.address.city + ", Deutschland";
@@ -35,7 +34,7 @@ app.service('locationService', function($state) {
 	ls.getLocation = function() {
 		return ls.oLocation;
 	};
-	
+
 	ls.getStreet = function() {
 		return ls.oLocation.address.street;
 	};
@@ -50,11 +49,11 @@ app.service('locationService', function($state) {
 	ls.getCategoryIndex = function() {
 		return ls.oLocation.categoryIndex;
 	};
-	
+
 	ls.getBootleIndex = function() {
 		return ls.oLocation.bottleIndex;
 	};
-	
+
 	ls.getReasonNotIndex = function() {
 		return ls.olocation.reasonNoIndex;
 	};
@@ -62,7 +61,7 @@ app.service('locationService', function($state) {
 	ls.getReasonYesIndex = function() {
 		return ls.olocation.reasonYesIndex;
 	};
-	
+
 	ls.setSearchName = function(newValue) {
 		ls.searchName = newValue;
 	};
@@ -219,6 +218,8 @@ app.service('locationService', function($state) {
 						postcode: data.documentElement.getElementsByTagName('d:POSTCODE')[0].innerHTML,
 						city: data.documentElement.getElementsByTagName('d:CITY')[0].innerHTML
 					},
+					latitude: data.documentElement.getElementsByTagName('d:LATITUDE')[0].innerHTML,
+					longitude: data.documentElement.getElementsByTagName('d:LONGITUDE')[0].innerHTML,
 					partners: null,
 					categoryIndex: data.documentElement.getElementsByTagName('d:CATEGORYID')[0].innerHTML,
 					decision: {
@@ -229,6 +230,7 @@ app.service('locationService', function($state) {
 						decisionCode: null
 					}
 				};
+				console.log("Selected Location: ");
 				console.log(ls.getSelectedLocation());
 				$state.go('locations-detail', {
 					tab: null
@@ -248,9 +250,7 @@ app.service('locationService', function($state) {
 		ls.oLocation.address = address;
 		parseInt(ls.oLocation.address.postcode);
 	};
-	
-	
-	
+
 	ls.convertGoogleAddressToObjectAddress = function(address_components) {
 
 		var address = {};
@@ -280,7 +280,7 @@ app.service('locationService', function($state) {
 					continue;
 				}
 			}
-			
+
 			if ($.inArray('postal_code', types) === 0) { // found
 				address.postcode = address_components[i].long_name;
 				if (address_components.length - 1 !== i) {
@@ -295,17 +295,29 @@ app.service('locationService', function($state) {
 			}
 		}
 	};
-	
-	ls.setBottletypes = function(B_330GLAS, B_500PET, B_750GLAS, B_1000PET, B_750TRIO, B_750PET){
 
-		if(B_330GLAS){ls.oLocation.GLAS_330 = "X";}
-		if(B_500PET){ls.oLocation.PET_500 = "X";}
-		if(B_750GLAS){ls.oLocation.GLAS_750 = "X";}
-		if(B_1000PET){ls.oLocation.PET_1000 = "X";}
-		if(B_750TRIO){ls.oLocation.TRIO_750 = "X";}
-		if(B_750PET){ls.oLocation.PET_750 = "X";}
+	ls.setBottletypes = function(B_330GLAS, B_500PET, B_750GLAS, B_1000PET, B_750TRIO, B_750PET) {
+
+		if (B_330GLAS) {
+			ls.oLocation.GLAS_330 = "X";
+		}
+		if (B_500PET) {
+			ls.oLocation.PET_500 = "X";
+		}
+		if (B_750GLAS) {
+			ls.oLocation.GLAS_750 = "X";
+		}
+		if (B_1000PET) {
+			ls.oLocation.PET_1000 = "X";
+		}
+		if (B_750TRIO) {
+			ls.oLocation.TRIO_750 = "X";
+		}
+		if (B_750PET) {
+			ls.oLocation.PET_750 = "X";
+		}
 	};
-	
+
 	ls.getPaperDecision = function() {
 		return ls.oLocation.paperDecision;
 	};
@@ -316,7 +328,7 @@ app.service('locationService', function($state) {
 			reasons: reasons
 		};
 	};
-	
+
 	ls.getWaterDecision = function() {
 		return ls.oLocation.waterDecision;
 	};
@@ -333,10 +345,10 @@ app.service('locationService', function($state) {
 				ls.oLocation.address.city;
 		}
 	};
-	
+
 	ls.resetSelectedLocation = function() {
 		ls.selectedLocation = {};
 		ls.oLocation = {};
 	};
-	
+
 });

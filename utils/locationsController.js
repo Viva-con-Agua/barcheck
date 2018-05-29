@@ -29,6 +29,42 @@ app.controller('ManualAdressCtrl', ['$scope', '$state', '$mdDialog', 'locationSe
 
 	$scope.address = locationService.oLocation.address || {}; // default '{}' if locationService.oLocation.address is undefined 
 
+// get address from google
+	$scope.address = function() {
+		var place = this.getPlace(); //get selected place 
+		console.log(this.getPlace());
+		var loc = this.getPlace().geometry.location;
+		$scope.latlng = [loc.lat(), loc.lng()];
+		$scope.center = [loc.lat(), loc.lng()];
+
+		$scope.longitude = loc.lng();
+		$scope.latitude = loc.lat();
+
+		locationService.setGeoPosition($scope.latitude, $scope.longitude);
+		
+		var street = "",
+		number = "";
+		$.each(this.getPlace().address_components, function(key, value) {
+			if (value.types.indexOf('route') != -1) {
+				console.log(value);
+				street = value.long_name;
+			}
+			if (value.types.indexOf('street_number') != -1) {
+				console.log(value);
+				number = value.long_name;
+			}
+			if (value.types.indexOf('postal_code') != -1) {
+				console.log(value);
+				$scope.postcodeModel = parseInt(value.long_name, 10);
+			}
+			if (value.types.indexOf('locality') != -1) {
+				console.log(value);
+				$scope.cityModel = value.long_name;
+			}
+		});
+		$scope.streetModel = street + " " + number;
+	};
+
 	$scope.showConfirm = function(event) {
 		locationService.setAddress($scope.address); // next command uses it so assign it here!
 		console.log($scope.streetModel)
@@ -88,7 +124,6 @@ app.controller('CategorySelectionCtrl', ['$scope', '$state', 'locationService', 
 
 app.controller('WaterDecisionCtrl', ['$scope', '$state', 'locationService', 'designService', 'historyService', function($scope, $state,
 	locationService, designService, historyService) {
-
 
 	$scope.goBack = function() {
 		historyService.setNavigatedBack(1);
@@ -175,10 +210,10 @@ app.controller('WaterDecisionCtrl', ['$scope', '$state', 'locationService', 'des
 		}
 		return 0;
 	};
-	
-	$scope.makeComment = function(){
-	locationService.setBottletypes($scope.B_330GLAS, $scope.B_500PET, $scope.B_750GLAS, $scope.B_1000PET, $scope.B_750TRIO, $scope.B_750PET);
-	$state.go('locations-comment');
+
+	$scope.makeComment = function() {
+		locationService.setBottletypes($scope.B_330GLAS, $scope.B_500PET, $scope.B_750GLAS, $scope.B_1000PET, $scope.B_750TRIO, $scope.B_750PET);
+		$state.go('locations-comment');
 	};
 
 	$scope.sendSupporter = function() {
@@ -205,11 +240,11 @@ app.controller('WaterDecisionCtrl', ['$scope', '$state', 'locationService', 'des
 	$scope.B_750TRIO = false;
 	$scope.B_750PET = false;
 	$scope.selected_images = function(image) {
-			// locationService.oLocation.bottleIndex = index;
-			// designService.ds.getBottlesForIndex = index;
-			// var selected_images = {};
+		// locationService.oLocation.bottleIndex = index;
+		// designService.ds.getBottlesForIndex = index;
+		// var selected_images = {};
 		var idx = designService.getImages().imageURLs.indexOf(image);
-		
+
 		switch (idx) {
 			case 0:
 				if ($scope.B_330GLAS) {
@@ -282,11 +317,17 @@ app.controller('WaterDecisionCtrl', ['$scope', '$state', 'locationService', 'des
 }]);
 
 app.controller('CommentCtrl', ['$scope', '$state', 'locationService', 'designService', 'historyService', function($scope, $state,
-	locationService) {
+	locationService, designService, historyService) {
 	$scope.sendSupporter = function(event) {
-		//locationService.setBottletypes($scope.B_330GLAS, $scope.B_500PET, $scope.B_750GLAS, $scope.B_1000PET, $scope.B_750TRIO, $scope.B_750PET);
-		locationService.setComment($scope.commentModel); 
+		locationService.setComment($scope.commentModel);
 		$state.go('locations-create-summary');
+	};
+
+	// navBack logic
+	$scope.goBack = function() {
+		locationService.resetSelectedLocation();
+		historyService.setNavigatedBack(1);
+		$state.go(historyService.getPreviousState());
 	};
 }]);
 
