@@ -29,7 +29,7 @@ app.controller('ManualAdressCtrl', ['$scope', '$state', '$mdDialog', 'locationSe
 
 	$scope.address = locationService.oLocation.address || {}; // default '{}' if locationService.oLocation.address is undefined 
 
-// get address from google
+	// get address from google
 	$scope.address = function() {
 		var place = this.getPlace(); //get selected place 
 		console.log(this.getPlace());
@@ -41,9 +41,9 @@ app.controller('ManualAdressCtrl', ['$scope', '$state', '$mdDialog', 'locationSe
 		$scope.latitude = loc.lat();
 
 		locationService.setGeoPosition($scope.latitude, $scope.longitude);
-		
+
 		var street = "",
-		number = "";
+			number = "";
 		$.each(this.getPlace().address_components, function(key, value) {
 			if (value.types.indexOf('route') != -1) {
 				console.log(value);
@@ -325,7 +325,6 @@ app.controller('CommentCtrl', ['$scope', '$state', 'locationService', 'designSer
 
 	// navBack logic
 	$scope.goBack = function() {
-		locationService.resetSelectedLocation();
 		historyService.setNavigatedBack(1);
 		$state.go(historyService.getPreviousState());
 	};
