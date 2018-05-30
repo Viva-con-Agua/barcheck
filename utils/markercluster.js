@@ -23,7 +23,10 @@ app.controller('mapController', function($scope, $element, NgMap) {
 		var location = {};
 		for (var i = 0; i < $scope.allLocations.length; i++) {
 			location = $scope.allLocations[i];
+			//only locations with water are shown
+			if (location.WATER === 'X'){
 			$scope.createMarker(location);
+			}
 		}
 
 		if ($scope.markers.length !== 0) {
@@ -68,7 +71,9 @@ app.controller('mapController', function($scope, $element, NgMap) {
 			console.log(selectedCategory);
 			for (var j = 0; j < $scope.allLocations.length; j++) {
 				location = $scope.allLocations[j];
-				if (location.CATEGORYID === selectedCategory) {
+				//only locations with water are shown
+				if (location.CATEGORYID === selectedCategory &&
+				location.WATER === 'X') {
 					$scope.createMarker(location);
 				}
 			}
