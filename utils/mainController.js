@@ -3,7 +3,7 @@ app.controller('MainController', ['$state', '$scope', '$mdDialog', '$timeout', '
 	function($state, $scope, $mdDialog, $timeout, $state, $mdSidenav, locationService, $rootScope, progressService, $http, AUTH_EVENTS) {
 		
 		
-		var show_dialog = false;
+		//var show_dialog = false;
 		/*
 			This option is for development mode only!
 			Remove my commit from May 28 2018 before deployment!
@@ -21,11 +21,12 @@ app.controller('MainController', ['$state', '$scope', '$mdDialog', '$timeout', '
 		};
 
 		var setCurrentUser = function() {
-			if ($scope.currentUser) {
-				$scope.currentUser = $rootScope.currentUser;	
-			} else {
-				$scope.currentUser = "DEV: NO USER";
-			}
+			$scope.currentUser = $rootScope.currentUser;
+			// if ($scope.currentUser) {
+			// 	$scope.currentUser = $rootScope.currentUser;	
+			// } else {
+			// 	$scope.currentUser = "DEV: NO USER";
+			// }
 			$state.go('home'); //home
 			$mdDialog.hide();
 		};
@@ -54,15 +55,20 @@ app.controller('MainController', ['$state', '$scope', '$mdDialog', '$timeout', '
 		//showLoginDialog()
 
 		$scope.logout = function() {
-			if (show_dialog == true) {
-				firebase.auth().signOut().then(function() {
-					$rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
-				}).catch(function(error) {
-					// TBD
-				});	
-			} else {
-				$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-			}
+			firebase.auth().signOut().then(function() {
+				$rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
+			}).catch(function(error) {
+				// TBD
+			});
+			// if (show_dialog == true) {
+			// 	firebase.auth().signOut().then(function() {
+			// 		$rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
+			// 	}).catch(function(error) {
+			// 		// TBD
+			// 	});	
+			// } else {
+			// 	$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+			// }
 		};
 
 		$scope.toggleLeft = buildToggler('left');
