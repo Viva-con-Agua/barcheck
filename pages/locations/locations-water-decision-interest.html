@@ -3,13 +3,13 @@
      <br>
      <div layout="column" layout-align="center">
      	
-        <md-checkbox class="new textDarkGrey" ng-repeat="(index, reason) in reasons" ng-click="makeComment()">
+        <md-checkbox class="new textDarkGrey" ng-repeat="(index, reason) in reasons" ng-click="sendSupporter2(index)">
           {{reason.text}}
         </md-checkbox>
      </div>
     <footer>
         <div layout="column" layout-align="center center">
-        	<md-button class="btn2" ng-click="makeComment()">continue</md-button>
+     <!--   	<md-button class="btn2" ng-click="sendSupporter2(index)">continue</md-button>-->
             <md-button class='btn1' ng-click="goBack()">
             	back
             </md-button>
