@@ -164,8 +164,13 @@ app.controller('mapController', function($scope, $element, NgMap) {
 
 		function errorHandler() {
 			// set position to Hamburg
-			$scope.longitude = 9.993682;
-			$scope.latitude = 53.551085;
+			// $scope.longitude = 9.993682;
+			// $scope.latitude = 53.551085;
+			
+			// set position to Munich
+			$scope.longitude = 11.581981;
+			$scope.latitude = 48.135125;
+			
 			// then assign map
 			$scope.map = map;
 			// and get markers
