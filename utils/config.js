@@ -97,6 +97,9 @@ app.config(['$stateProvider', '$mdThemingProvider', 'uiGmapGoogleMapApiProvider'
 		.state('home', {
 			templateUrl: 'pages/home.html'
 		})
+		.state('homeWithMap', {
+			templateUrl: 'pages/homeWithMap.html'
+		})
 		.state('map', {
 			templateUrl: 'pages/map.html'
 		})

@@ -2,7 +2,7 @@
   "hcpdeploy": {
     "account": "acb28be61",
     "name": "vivaconagua",
-    "lastVersionWeTriedToDeploy": "1.66"
+    "lastVersionWeTriedToDeploy": "1.67"
   },
   "build": {
     "targetFolder": "dist",

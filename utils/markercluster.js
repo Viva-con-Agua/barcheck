@@ -1,13 +1,24 @@
 app.controller('mapController', function($scope, $element, NgMap) {
 
-	$scope.showNavigation(true);
+	$scope.showNavigation(false);
 	$scope.showMarkers = true;
+	if(navigator && navigator.geolocation) {
+	navigator.geolocation.watchPosition(function(position) {
+		console.log(position);
+	}, function(error) {
+		console.error('Error: ' + error);
+	}, {
+		enableHighAccuracy: true,
+		maximumAge: 30000,
+		timeout: 27000
+	});
+	}
 
 	// create an empty variable for the categories which will be selected
 	var selectedCategories = [];
 
 	$scope.initMarkerClusterer = function() {
-		$scope.zoomLevel = 10;
+		$scope.zoomLevel = 14;
 		/*var markers = $scope.locatons.map(function (location) {
 		    return $scope.createMarker(location);
 		});*/
@@ -137,6 +148,8 @@ app.controller('mapController', function($scope, $element, NgMap) {
 			// at the end load markers
 			getMarkers();
 		}
+		
+		
 		
 		//function for search box 
 		$scope.placeMarker = function(){

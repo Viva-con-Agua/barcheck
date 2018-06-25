@@ -27,7 +27,8 @@ app.controller('MainController', ['$state', '$scope', '$mdDialog', '$timeout', '
 			// } else {
 			// 	$scope.currentUser = "DEV: NO USER";
 			// }
-			$state.go('home'); //home
+			// $state.go('home'); //home
+			$state.go('homeWithMap');
 			$mdDialog.hide();
 		};
 		// initial start
