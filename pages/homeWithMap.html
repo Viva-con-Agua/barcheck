@@ -45,24 +45,6 @@
 	</form>
 
     <ng-map id="map" default-style="false" fullscreen-control="false" map-type-control="false" center="[{{latitude}}, {{longitude}}]" zoom="{{zoomLevel}}">
-          
-          <label>SELECT CATEGORIES</label>
-        	
-        <md-select ng-model="selectedVegetables"
-                   md-on-close="clearSearchTerm()"
-                   data-md-container-class="selectdemoSelectHeader"
-                   multiple>
-          <md-select-header class="demo-select-header">
-            <input ng-model="searchTerm"
-                   type="search"
-                   placeholder="Search for a category.."
-                   class="demo-header-searchbox md-text">
-          </md-select-header>
-          <md-optgroup label="vegetables">       
-            <md-option ng-value="category" ng-repeat="category in categories |
-              filter:searchTerm" ng-click="filterChanged(category)">{{category}}</md-option>
-          </md-optgroup>
-        </md-select>
         
           <info-window id="myInfoWindow" position="current-location">
         	<div ng-non-bindable>
