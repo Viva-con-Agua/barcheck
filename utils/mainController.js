@@ -72,7 +72,7 @@ app.controller('MainController', ['$state', '$scope', '$mdDialog', '$timeout', '
 			// }
 		};
 
-		$scope.toggleLeft = buildToggler('left');
+		$scope.toggleRight = buildToggler('right');
 
 		function buildToggler(componentId) {
 

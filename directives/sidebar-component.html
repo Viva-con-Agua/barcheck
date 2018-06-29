@@ -1,22 +1,19 @@
-<md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="4">
-  <a>
-    <img class="vcalogo0" src="sources/img/vcalogo_blue.png"/>
-  </a>
+<md-sidenav id="sidebar" class="md-sidenav-right" md-component-id="right" >
   <md-toolbar class="md-theme-indigo md-hue-3">
-    <md-button ui-sref="home" ng-click="toggleLeft()">
+    <md-button ui-sref="homeWithMap" ng-click="toggleRight()">
       Home
     </md-button>
-    <md-button ui-sref="locations" ng-click="toggleLeft()">
+    <md-button ui-sref="locations" ng-click="toggleRight()">
       Location
     </md-button>
-    <md-button ui-sref="map" ng-click="toggleLeft()">
-      Map
-    </md-button>
-    <md-button ui-sref="presentation" ng-click="toggleLeft()">
+    <md-button ui-sref="presentation" ng-click="toggleRight()">
       VcA
     </md-button>
-    <md-button ui-sref="feedback" ng-click="toggleLeft()" >
+    <md-button ui-sref="feedback" ng-click="toggleRight()" >
       Feedback
+    </md-button>
+    <md-button ui-sref="logout" ng-click="toggleRight()" >
+      Logout
     </md-button>
   </md-toolbar>
 </md-sidenav>

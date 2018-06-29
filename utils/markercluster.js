@@ -2,9 +2,17 @@ app.controller('mapController', function($scope, $element, NgMap) {
 
 	$scope.showNavigation(false);
 	$scope.showMarkers = true;
-	if(navigator && navigator.geolocation) {
-	navigator.geolocation.watchPosition(function(position) {
+
+	var available = false,
+		gpsLatitude,
+		gpsLongitude;
+
+		if(navigator && navigator.geolocation) {
+		navigator.geolocation.watchPosition(function(position) {
 		console.log(position);
+		available = true;
+		gpsLatitude = position.coords.latitude;
+		gpsLongitude = position.coords.longitude;
 	}, function(error) {
 		console.error('Error: ' + error);
 	}, {
@@ -13,6 +21,19 @@ app.controller('mapController', function($scope, $element, NgMap) {
 		timeout: 27000
 	});
 	}
+
+	//burger menu
+	angular
+		.module('customSidenavDemo', ['ngMaterial'])
+		.controller('AppCtrl', function($scope, $mdSidenav) {
+			$scope.toggleRight = buildToggler('right');
+
+			function buildToggler(componentId) {
+				return function() {
+					$mdSidenav(componentId).toggle();
+				};
+			}
+		});
 
 	// create an empty variable for the categories which will be selected
 	var selectedCategories = [];
@@ -29,14 +50,14 @@ app.controller('mapController', function($scope, $element, NgMap) {
 		$scope.initAllLocations();
 	};
 
-// Default map with all locations
+	// Default map with all locations
 	$scope.initAllLocations = function() {
 		var location = {};
 		for (var i = 0; i < $scope.allLocations.length; i++) {
 			location = $scope.allLocations[i];
 			//only locations with water are shown
-			if (location.WATER === 'X'){
-			$scope.createMarker(location);
+			if (location.WATER === 'X') {
+				$scope.createMarker(location);
 			}
 		}
 
@@ -60,7 +81,7 @@ app.controller('mapController', function($scope, $element, NgMap) {
 		ev.stopPropagation();
 	});
 
-	 $scope.showMarkers = true;
+	$scope.showMarkers = true;
 
 	$scope.filterChanged = function(category) {
 		var idx = selectedCategories.indexOf(category);
@@ -84,7 +105,7 @@ app.controller('mapController', function($scope, $element, NgMap) {
 				location = $scope.allLocations[j];
 				//only locations with water are shown
 				if (location.CATEGORYID === selectedCategory &&
-				location.WATER === 'X') {
+					location.WATER === 'X') {
 					$scope.createMarker(location);
 				}
 			}
@@ -138,6 +159,14 @@ app.controller('mapController', function($scope, $element, NgMap) {
 				}
 			});
 		}
+		$scope.position2 = function() {
+			if (navigator && navigator.geolocation && available === true) {
+				map.setZoom(14);
+				$scope.latitude = gpsLatitude;
+				$scope.longitude = gpsLongitude;
+
+			}
+		};
 
 		function showPosition(position) {
 			// standard geolocation successHandler
@@ -148,42 +177,40 @@ app.controller('mapController', function($scope, $element, NgMap) {
 			// at the end load markers
 			getMarkers();
 		}
-		
-		
-		
+
 		//function for search box 
-		$scope.placeMarker = function(){
-			var place = this.getPlace();  //get selected place 
-			console.log(this.getPlace());  
-        	var loc = this.getPlace().geometry.location;
-            $scope.latlng = [loc.lat(), loc.lng()];
-            $scope.center = [loc.lat(), loc.lng()];
-            if(this.getPlace().types.indexOf("establishment") > -1) {
-            	// establishment --> higher zoom
-            	map.setZoom(17);
-            } else if(this.getPlace().types.indexOf("route") > -1) {
-            	// route --> higher zoom
-            	map.setZoom(15);
-            }else if(this.getPlace().types.indexOf("sublocality") > -1) {
-            	// sublocality --> higher zoom
-            	map.setZoom(15);
-            }else {
-            	// geocode --> less zoom
-            	map.setZoom(10);
-            }
+		$scope.placeMarker = function() {
+			var place = this.getPlace(); //get selected place 
+			console.log(this.getPlace());
+			var loc = this.getPlace().geometry.location;
+			$scope.latlng = [loc.lat(), loc.lng()];
+			$scope.center = [loc.lat(), loc.lng()];
+			if (this.getPlace().types.indexOf("establishment") > -1) {
+				// establishment --> higher zoom
+				map.setZoom(17);
+			} else if (this.getPlace().types.indexOf("route") > -1) {
+				// route --> higher zoom
+				map.setZoom(15);
+			} else if (this.getPlace().types.indexOf("sublocality") > -1) {
+				// sublocality --> higher zoom
+				map.setZoom(15);
+			} else {
+				// geocode --> less zoom
+				map.setZoom(10);
+			}
 			$scope.longitude = loc.lng();
-			$scope.latitude =  loc.lat();
-	};
+			$scope.latitude = loc.lat();
+		};
 
 		function errorHandler() {
 			// set position to Hamburg
 			// $scope.longitude = 9.993682;
 			// $scope.latitude = 53.551085;
-			
+
 			// set position to Munich
 			$scope.longitude = 11.581981;
 			$scope.latitude = 48.135125;
-			
+
 			// then assign map
 			$scope.map = map;
 			// and get markers
@@ -191,6 +218,16 @@ app.controller('mapController', function($scope, $element, NgMap) {
 			// following should be replaced with UI information
 			console.log("Error");
 		}
+
+		$scope.dragEnd = function() {
+			$scope.latitude = $scope.map.getCenter().lat();
+			$scope.longitude = $scope.map.getCenter().lng();
+		};
+
+		$scope.centerChange = function() {
+			$scope.latitude = $scope.map.getCenter().lat();
+			$scope.longitude = $scope.map.getCenter().lng();
+		};
 
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(showPosition, errorHandler);

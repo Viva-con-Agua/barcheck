@@ -70,13 +70,16 @@ mixpanel.init("cf55ee0457511a198716cc4edbcc9de8");</script>
         <md-toolbar id="nav" ng-show="navigation" back-img="sources/img/Background_dunkel.jpg">
           <div class="md-toolbar-tools">
           	
-            <md-button name="menu" ui-sref="home" class="md-icon-button md-primary new" >
+            <md-button name="menu" ui-sref="homeWithMap" class="md-icon-button md-primary new" >
               <md-icon class="new" md-svg-icon="sources/img/icons/logo_vca_app.svg"></md-icon>
             </md-button>
             <span flex></span>
             <md-button name="Logout" ng-click="logout()" class="md-icon-button md-primary">
               <md-icon md-svg-icon="sources/img/icons/logout.svg"></md-icon>
-            </md-button>
+            </md-button> 
+           <!-- <form>
+				 <input type="image" class="burgermenu" src="sources/img/BurgerMenu.png" ng-click="toggleRight()">
+			</form> -->
             
           </div>
         </md-toolbar>

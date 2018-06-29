@@ -1,24 +1,23 @@
-<div ng-controller="mapController">	
-
-
-<!--<style>
-  ng-map#custom1 {display:block; height:20em; padding-top: 3%;} /* SMALL SCREENS */
-</style>
-<style>
-  ng-map#custom2 {display:block; height:30em; padding-top: 3%;} /* BIG SCREENS - not in use*/
-</style>
-<style>
-  ng-map#custom3 {display:block; height:40em; padding-top: 3%;} /* IPAD - not in use*/
-</style> -->
-
-   <!-- <div hide-gt-xs flex>-->
-<!-- <div layout="row">
+<div ng-controller="mapController">
+	<div>
+	<div>	
+ 	<input id="searchBox" places-auto-complete types="['establishment', 'geocode']" on-place-changed="placeMarker()" placeholder = "Search Box" component-restrictions="{country: ['de', 'ch', 'at']}"  radius="1000"/> 
+	</div>
+	
+	<div>
+	<form>
+		  <input type="image" class="icon burgermenu" src="sources/img/BurgerMenu.png" ng-click="toggleRight()">
+	</form>
+	</div>
+	
+	<div layout="row" class="categoriesonmap">
       <md-input-container>
         <label>SELECT CATEGORIES</label>
         	
-        <md-select ng-model="selectedVegetables"
+        <md-select ng-model="selectedCategories"
                    md-on-close="clearSearchTerm()"
                    data-md-container-class="selectdemoSelectHeader"
+                   class="elevatedSelect"
                    multiple>
           <md-select-header class="demo-select-header">
             <input ng-model="searchTerm"
@@ -26,26 +25,18 @@
                    placeholder="Search for a category.."
                    class="demo-header-searchbox md-text">
           </md-select-header>
-          <md-optgroup label="vegetables">       
+          <md-optgroup label="categories">       
             <md-option ng-value="category" ng-repeat="category in categories |
               filter:searchTerm" ng-click="filterChanged(category)">{{category}}</md-option>
           </md-optgroup>
         </md-select>
       </md-input-container>
     </div>
- </div>  -->
-	
- 	<input id="searchBox" places-auto-complete types="['establishment', 'geocode']" on-place-changed="placeMarker()" placeholder = "Search Box" component-restrictions="{country: ['de', 'ch', 'at']}" /> 
+    </div>
 
-<!--	<input id="searchBox" ng-model="autocomplete" 
-       ng-autocomplete options="options1" details="details1" initial-address="initialAddress" placeholder = "Search Box"/> -->
+<!--    <ng-map id="map" default-style="false" fullscreen-control="false" map-type-control="false" center="[{{latitude}}, {{longitude}}]" zoom="{{zoomLevel}}" on-dragend="dragEnd()" on-center_changed="centerChange()">-->
+    <ng-map id="map" default-style="false" fullscreen-control="false" map-type-control="false" center="[{{latitude}}, {{longitude}}]" zoom="{{zoomLevel}}" on-dragend="dragEnd()" on-idle="centerChange()">
 
-	<form>
-		  <input type="image" class="burgermenu" src="sources/img/BurgerMenu.png">
-	</form>
-
-    <ng-map id="map" default-style="false" fullscreen-control="false" map-type-control="false" center="[{{latitude}}, {{longitude}}]" zoom="{{zoomLevel}}">
-        
           <info-window id="myInfoWindow" position="current-location">
         	<div ng-non-bindable>
             <h4>{{selectedLocation.NAME}}</h4>
@@ -55,7 +46,9 @@
         </info-window>
     </ng-map>
     
-    	<form>
-		  <input type="image" class="position" src="sources/img/Position.png">
+    <div>	
+    <form>
+		  <input type="image" class="icon position" src="sources/img/Position.png" ng-click="position2()">
 	</form>
+	</div>
     </div>

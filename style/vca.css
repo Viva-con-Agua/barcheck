@@ -393,7 +393,7 @@ ng-map {
 	width:100%; 
 	height:100%;
 	left: 0;
-	z-index:999;
+	z-index:0;
 }
 
 #searchBox{
@@ -402,22 +402,47 @@ ng-map {
 	margin:10px;
 	left:0;
 	padding:5px;
+	width:70%;
+	max-width:300px;
+}
+
+.icon{
+	position:absolute;
+	z-index:99999;
+	margin:10px;
+    max-width: 40px; 
+    height: auto;
 }
 
 .burgermenu{
-	position:absolute;
-	z-index:99999;
 	right: 0;
-	margin:10px;
-    max-width: 10%; 
-    height: auto;
 }
 .position{
-	position:absolute;
-	z-index:99999;
 	left: 0;
-	margin:10px;
-    max-width: 10%; 
-    height: auto;
     bottom:0;
+}
+
+.categoriesonmap{
+	position:absolute;
+	margin:10px;
+	z-index: 1;
+	left:0;
+	top:30px;
+	width:150px;
+}
+
+.elevatedSelect {
+	z-index:9999;
+}
+
+#sidebar{
+	z-index:99999;
+	background:transparent;
+	
+}
+
+@media(min-width:920px){
+	.icon{
+    max-width: 50px; 
+}
 }
