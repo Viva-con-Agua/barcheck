@@ -382,7 +382,15 @@ app.controller('SummaryController', ['$scope', '$state', 'locationService', 'his
 			PET_750: locationService.getLocation().PET_750,
 			WHY_NOT: locationService.getLocation().reasonNoIndex,
 			WHY_NOT_BEFORE: locationService.getLocation().reasonYesIndex,
-			COMMENT: locationService.getLocation().comment
+			COMMENT: locationService.getLocation().comment,
+			MONDAY: locationService.getLocation().monday,
+			TUESDAY: locationService.getLocation().tuesday,
+			WEDNESDAY: locationService.getLocation().wednesday,
+			THURSDAY: locationService.getLocation().thursday,
+			FRIDAY: locationService.getLocation().friday,
+			SATURDAY: locationService.getLocation().saturday,
+			SUNDAY: locationService.getLocation().sunday,
+			PLACE_ID: locationService.getLocation().place_id
 		});
 
 		// POST
@@ -701,7 +709,15 @@ app.controller('locationsDetailCtrl', ['$rootScope', '$scope', '$state', '$mdDia
 				LONGITUDE: locationService.getSelectedLocation().longitude,
 				WHY_NOT: locationService.getLocation().reasonNoIndex,
 				WHY_NOT_BEFORE: locationService.getLocation().reasonYesIndex,
-				COMMENT: locationService.getLocation().comment
+				COMMENT: locationService.getLocation().comment,
+				MONDAY: locationService.getLocation().monday,
+				TUESDAY: locationService.getLocation().tuesday,
+				WEDNESDAY: locationService.getLocation().wednesday,
+				THURSDAY: locationService.getLocation().thursday,
+				FRIDAY: locationService.getLocation().friday,
+				SATURDAY: locationService.getLocation().saturday,
+				SUNDAY: locationService.getLocation().sunday,
+				PLACE_ID: locationService.getLocation().place_id
 			});
 
 			// PUT

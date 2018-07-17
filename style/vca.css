@@ -421,6 +421,12 @@ ng-map {
 	left: 0;
     bottom:0;
 }
+.plus{
+	position: relative;
+	margin:0px;
+	float:right;
+	height:20px;
+}
 
 .categoriesonmap{
 	position:absolute;
@@ -440,6 +446,102 @@ ng-map {
 	background:transparent;
 	
 }
+
+#swipeup{
+	position:absolute;
+	z-index:9999;
+	bottom:0;
+	height: 50px;
+	text-align:center;
+	left:0;
+	right:0;
+	overflow: hidden;
+	transition: all 1s;
+	-webkit-transition: all 1s;
+}
+
+#swipeup.swipedUp {
+	height: 50%;
+	overflow: scroll;
+}
+
+/* for testing */
+#appBody {
+	overflow: hidden;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    /*display: none;*/
+    overflow: hidden;
+}
+
+.clearfix{
+	clear:both;
+}
+
+.water-list:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.water-wrapper {
+	
+}
+
+.water-wrapper:nth-child(3n):after {
+	clear: both;
+	content: "";
+	display: table;
+}
+
+.water{
+	display: block;
+	position: relative;
+    float: left;
+    width: 33.3%;
+    margin: 0;
+    padding: 0;
+}
+/*
+#navigate{
+	text-align:center;
+}*/
+
+.arrow{
+	position: relative;
+    width: 60px;
+}
+
+.arrow.rotated {
+	transform: rotate(180deg);
+}
+
+#moreinfos{
+	z-index:999999999999;
+}
+
 
 @media(min-width:920px){
 	.icon{

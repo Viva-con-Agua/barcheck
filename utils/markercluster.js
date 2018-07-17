@@ -4,24 +4,90 @@ app.controller('mapController', function($scope, $element, NgMap) {
 	$scope.showMarkers = true;
 
 	var available = false,
+		mapLoaded = false,
 		gpsLatitude,
-		gpsLongitude;
+		gpsLongitude,
+		myLocation,
+		nearLocations = [],
+		counter = 0,
+		service;
 
-		if(navigator && navigator.geolocation) {
-		navigator.geolocation.watchPosition(function(position) {
-		console.log(position);
-		available = true;
-		gpsLatitude = position.coords.latitude;
-		gpsLongitude = position.coords.longitude;
-	}, function(error) {
-		console.error('Error: ' + error);
-	}, {
-		enableHighAccuracy: true,
-		maximumAge: 30000,
-		timeout: 27000
-	});
+	var thisPlace;
+
+	/* 
+	process the results from details request 
+	*/
+	function detailCallback(detailPlace, status) {
+		console.log(detailPlace);
+		
+		//get index for today
+		var d = new Date();
+		var today = d.getDay(); 
+	
+		if (today === 0){
+			today = 7;
+		}
+		//save opening hours for today
+		thisPlace.opening_hours = detailPlace.opening_hours.weekday_text[today-1];
+		//save formatted address for location
+		thisPlace.formatted_address = detailPlace.formatted_address;
+		thisPlace.loading = false;
+		$scope.$apply();
 	}
 
+	/*
+	open details for location 
+	*/
+	$scope.toggleItem = function(place) {
+		//all tabs are closed
+		for (var i = 0; i < $scope.allPlaces.length; i++) {
+			if (i !== $scope.allPlaces.indexOf(place)) {
+				$scope.allPlaces[i].toggle = false;
+			}
+		}
+		//click on location
+		if (!place.toggle) { // invisible to visible
+		//detail request
+			var request = {
+				placeId: place.place_id,
+				fields: ['opening_hours', 'id', 'formatted_address']
+			};
+			thisPlace = place;
+			place.loading = true;
+			service.getDetails(request, detailCallback);
+		}
+		place.toggle = !place.toggle;
+	};
+
+	//find current position
+	if (navigator && navigator.geolocation) {
+		var watchId = navigator.geolocation.watchPosition(function(position) {
+			console.log(position);
+			available = true;
+			gpsLatitude = position.coords.latitude;
+			gpsLongitude = position.coords.longitude;
+
+			// if (position.coords.accuracy <= 100) {
+			// 	navigator.geolocation.clearWatch(watchId);
+			// }
+					//GPS for Autocomplete search
+			$scope.bounds = {
+				center: {
+					lat: gpsLatitude,
+					lng: gpsLongitude
+				},
+				radius: 5000
+			};
+		}, function(error) {
+			console.error('Error: ' + error);
+		}, {
+			enableHighAccuracy: true,
+			maximumAge: 30000,
+			timeout: 27000
+		}			
+)
+		;
+	}
 	//burger menu
 	angular
 		.module('customSidenavDemo', ['ngMaterial'])
@@ -37,6 +103,20 @@ app.controller('mapController', function($scope, $element, NgMap) {
 
 	// create an empty variable for the categories which will be selected
 	var selectedCategories = [];
+
+	$scope.swipedUp = false;
+	
+	//trigger swipe up
+/*	$scope.onSwipeUp = function() {
+		$scope.swipedUp = true;
+		console.log('Swipe Up');
+	};
+	
+	//trigger swipe down
+	$scope.onSwipeDown = function() {
+		$scope.swipedUp = false;
+		console.log('Swipe Down');
+	};*/
 
 	$scope.initMarkerClusterer = function() {
 		$scope.zoomLevel = 14;
@@ -140,6 +220,96 @@ app.controller('mapController', function($scope, $element, NgMap) {
 				 The position is handed over to the ngMap 'center' property through
 				 $scope.latitude and $scope.longitude
 		*/
+		mapLoaded = true;
+	
+		//process the results of nearby search
+		var processResults = function(result, status, pagination) {
+			//one array for all categories
+			nearLocations = nearLocations.concat(result);
+			counter++;
+			console.log('NearbySearch');
+			console.log(result);
+	
+			//received results of all requests 
+			if (counter == 3) {
+				var idLocations = [],
+					distinctNearLocations = [];
+				var theLocation;
+				for (var i = 0; i < nearLocations.length; i++) {
+					// delete duplicates
+					if (idLocations.indexOf(nearLocations[i].id) === -1) {
+						theLocation = nearLocations[i];
+						idLocations[i] = theLocation.id;
+						//getting the distance 
+						theLocation.dLocation = Math.abs((gpsLatitude - theLocation.geometry.location.lat())) + Math.abs((gpsLongitude -
+							theLocation.geometry.location.lng()));
+					
+						for(var j = 0; j < $scope.allLocations.length; j++) {
+							//check if location is in the database
+							if($scope.allLocations[j].PLACE_ID === theLocation.place_id) {
+								theLocation.water = true;
+								
+								//check which bundle type is available 
+								if($scope.allLocations[j].GLAS_330 == "X"){
+									theLocation.GLAS330 = "Glas 330ml";
+								}
+								if($scope.allLocations[j].PET_500 == "X"){
+									theLocation.PET500 = "PET 500ml";
+								}
+								if($scope.allLocations[j].GLAS_750 == "X"){
+									theLocation.GLAS750 = "Glas 750ml";
+								}
+								if($scope.allLocations[j].PET_1000 == "X"){
+									theLocation.PET1000 = "PET 1000ml";
+								}
+								if($scope.allLocations[j].TRIO_750 == "X"){
+									theLocation.TRIO750 = "Trio 750ml";
+								}
+								if($scope.allLocations[j].PET_750 == "X"){
+									theLocation.PET750 = "PET 750ml";
+								}
+								// TODO: add other attributes from database
+								break;
+							}
+						 }
+						distinctNearLocations.push(theLocation);
+					}
+				}
+				nearLocations = distinctNearLocations;
+				// order by distance
+				nearLocations.sort(function(a, b) {
+					return a.dLocation - b.dLocation;
+				});
+				$scope.allPlaces = nearLocations;
+				console.log(nearLocations);
+			}
+		};
+		
+		//nearby search for categories: bar, cafe, restaurant
+		var triggerNearbySearch = function() {
+			if (mapLoaded && gpsLatitude && gpsLongitude) {
+				service = new google.maps.places.PlacesService(map);
+				myLocation = {
+					lat: gpsLatitude,
+					lng: gpsLongitude
+				};
+				service.nearbySearch({
+					location: myLocation,
+					rankBy: google.maps.places.RankBy.DISTANCE,
+					types: ['bar']
+				}, processResults);
+				service.nearbySearch({
+					location: myLocation,
+					rankBy: google.maps.places.RankBy.DISTANCE,
+					types: ['cafe']
+				}, processResults);
+				service.nearbySearch({
+					location: myLocation,
+					rankBy: google.maps.places.RankBy.DISTANCE,
+					types: ['restaurant']
+				}, processResults);
+			}
+		};
 
 		function getMarkers() {
 			$.ajax({
@@ -155,16 +325,18 @@ app.controller('mapController', function($scope, $element, NgMap) {
 						$scope.allLocations = data.d.results;
 						$scope.markers = [];
 						$scope.initMarkerClusterer();
+						triggerNearbySearch();
 					});
 				}
 			});
 		}
+
+		//function for the button to show own position on the map 
 		$scope.position2 = function() {
 			if (navigator && navigator.geolocation && available === true) {
 				map.setZoom(14);
 				$scope.latitude = gpsLatitude;
 				$scope.longitude = gpsLongitude;
-
 			}
 		};
 
@@ -176,6 +348,7 @@ app.controller('mapController', function($scope, $element, NgMap) {
 			$scope.map = map;
 			// at the end load markers
 			getMarkers();
+
 		}
 
 		//function for search box 
@@ -185,6 +358,7 @@ app.controller('mapController', function($scope, $element, NgMap) {
 			var loc = this.getPlace().geometry.location;
 			$scope.latlng = [loc.lat(), loc.lng()];
 			$scope.center = [loc.lat(), loc.lng()];
+			//different zoom levels for different typea
 			if (this.getPlace().types.indexOf("establishment") > -1) {
 				// establishment --> higher zoom
 				map.setZoom(17);
@@ -203,10 +377,6 @@ app.controller('mapController', function($scope, $element, NgMap) {
 		};
 
 		function errorHandler() {
-			// set position to Hamburg
-			// $scope.longitude = 9.993682;
-			// $scope.latitude = 53.551085;
-
 			// set position to Munich
 			$scope.longitude = 11.581981;
 			$scope.latitude = 48.135125;
@@ -231,6 +401,7 @@ app.controller('mapController', function($scope, $element, NgMap) {
 
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(showPosition, errorHandler);
+
 			// function gets following parameters: getCurrentPosition(successHandler, errorHandler)
 		} else {
 			errorHandler(); // call the errorHandler too in case the browser doesn't support native GeoLocation

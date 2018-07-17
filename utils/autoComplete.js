@@ -25,6 +25,16 @@ app.controller("TestCtrl", ['$state', '$scope', 'locationService', 'historyServi
 			locationService.setAddress(address);
 			locationService.setGeoPosition($scope.details1.geometry.location.lat(), $scope.details1.geometry.location.lng());
 			$state.go('locations-search-result');
+			
+			locationService.setMonday($scope.details1.opening_hours.weekday_text[0]);
+			locationService.setTuesday($scope.details1.opening_hours.weekday_text[1]);
+			locationService.setWednesday($scope.details1.opening_hours.weekday_text[2]);
+			locationService.setThursday($scope.details1.opening_hours.weekday_text[3]);
+			locationService.setFriday($scope.details1.opening_hours.weekday_text[4]);
+			locationService.setSaturday($scope.details1.opening_hours.weekday_text[5]);
+			locationService.setSunday($scope.details1.opening_hours.weekday_text[6]);
+			
+			locationService.setPlaceid($scope.details1.place_id);
 		}
 	
 	};

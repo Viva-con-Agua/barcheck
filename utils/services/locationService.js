@@ -1,6 +1,6 @@
 app.service('locationService', function($state) {
 	var ls = this; // ls => locationService
-
+	var days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 	ls.setDecision = function(decision) {
 		ls.oLocation.decision = decision;
 	};
@@ -14,6 +14,41 @@ app.service('locationService', function($state) {
 
 	ls.setComment = function(comment) {
 		ls.oLocation.comment = comment;
+	};
+	
+	// for(var i; i<7; i++){
+		
+	// 	ls.days[i] = function (days[i]){
+	// 	ls.oLocation.days[i] = days[i];	
+	// 	};
+		
+	// }
+	
+	
+	ls.setMonday = function(monday){
+		ls.oLocation.monday= monday;
+	};
+	ls.setTuesday = function(tuesday){
+		ls.oLocation.tuesday= tuesday;
+	};
+	ls.setWednesday = function(wednesday){
+		ls.oLocation.wednesday= wednesday;
+	};
+	ls.setThursday = function(thursday){
+		ls.oLocation.thursday= thursday;
+	};
+	ls.setFriday = function(friday){
+		ls.oLocation.friday= friday;
+	};
+	ls.setSaturday = function(saturday){
+		ls.oLocation.saturday= saturday;
+	};
+	ls.setSunday = function(sunday){
+		ls.oLocation.sunday= sunday;
+	};
+	
+	ls.setPlaceid = function(place_id){
+		ls.oLocation.place_id = place_id;
 	};
 
 	ls.getAddressAsString = function() {
