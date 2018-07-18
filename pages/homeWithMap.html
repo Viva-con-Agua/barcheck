@@ -35,7 +35,7 @@
     </div>
 
     <ng-map id="map" default-style="false" fullscreen-control="false" map-type-control="false" center="[{{latitude}}, {{longitude}}]" zoom="{{zoomLevel}}" on-dragend="dragEnd()" on-idle="centerChange()">
-
+	<!-- https://developers.google.com/maps/documentation/javascript/events -->
           <info-window id="myInfoWindow" position="current-location">
         	<div ng-non-bindable>
             <h4>{{selectedLocation.NAME}}</h4>
@@ -71,7 +71,7 @@
 	  			<li ng-repeat="text in place.opening_hours.weekday_text">
 	  				{{ text }}<br>
 	  			</li>
-	  		</ul> --> 
+	  		</ul> all opening hours--> 
 		</div>
 		<div class="water-list"> 
 		<div class="water-wrapper" ng-if="place.GLAS330">
@@ -94,6 +94,7 @@
 		</div>
 		</div>
 		
+		<!-- link works with place id, VCA is just a placeholder -->
 		<div id="navigate clearfix"><a ng-href="https://www.google.com/maps/dir/?api=1&destination=VCA&destination_place_id={{place.place_id}}" target="_blank">Navigate</a></div>
 	</div>
 	</div>

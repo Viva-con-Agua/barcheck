@@ -18,20 +18,26 @@ app.controller('mapController', function($scope, $element, NgMap) {
 	process the results from details request 
 	*/
 	function detailCallback(detailPlace, status) {
+		console.log("detail information with opening hours");
 		console.log(detailPlace);
 		
-		//get index for today
 		var d = new Date();
 		var today = d.getDay(); 
-	
-		if (today === 0){
+		
+		if (today === 0){ //on sundays the index is 0. If you subtract one, the value in the array is undefined. 
 			today = 7;
 		}
-		//save opening hours for today
-		thisPlace.opening_hours = detailPlace.opening_hours.weekday_text[today-1];
-		//save formatted address for location
+
+	
+		if(typeof detailPlace.opening_hours === "undefined"){
+			thisPlace.opening_hours = "there are no opening hours";
+		}else{
+			thisPlace.opening_hours = detailPlace.opening_hours.weekday_text[today-1]; //indices of days are different to the indices of google maps  --> -1
+		}
 		thisPlace.formatted_address = detailPlace.formatted_address;
+		//loading animation disappears
 		thisPlace.loading = false;
+		console.log("tab closed");
 		$scope.$apply();
 	}
 
@@ -39,22 +45,24 @@ app.controller('mapController', function($scope, $element, NgMap) {
 	open details for location 
 	*/
 	$scope.toggleItem = function(place) {
-		//all tabs are closed
+		
 		for (var i = 0; i < $scope.allPlaces.length; i++) {
 			if (i !== $scope.allPlaces.indexOf(place)) {
-				$scope.allPlaces[i].toggle = false;
+				$scope.allPlaces[i].toggle = false;//all tabs are closed
 			}
 		}
 		//click on location
 		if (!place.toggle) { // invisible to visible
-		//detail request
 			var request = {
 				placeId: place.place_id,
-				fields: ['opening_hours', 'id', 'formatted_address']
+				fields: ['opening_hours', 'id', 'formatted_address'] //requested fields (https://developers.google.com/maps/documentation/javascript/places)
 			};
 			thisPlace = place;
+			//loading animation
 			place.loading = true;
+			console.log("tab opened");
 			service.getDetails(request, detailCallback);
+			console.log("details requested");
 		}
 		place.toggle = !place.toggle;
 	};
@@ -68,9 +76,10 @@ app.controller('mapController', function($scope, $element, NgMap) {
 			gpsLongitude = position.coords.longitude;
 
 			// if (position.coords.accuracy <= 100) {
-			// 	navigator.geolocation.clearWatch(watchId);
+			// 	navigator.geolocation.clearWatch(watchId); //stop watcher
 			// }
-					//GPS for Autocomplete search
+			
+			//GPS for Autocomplete search
 			$scope.bounds = {
 				center: {
 					lat: gpsLatitude,
@@ -81,7 +90,7 @@ app.controller('mapController', function($scope, $element, NgMap) {
 		}, function(error) {
 			console.error('Error: ' + error);
 		}, {
-			enableHighAccuracy: true,
+			enableHighAccuracy: true,  //GPS sensor on mobile phones  
 			maximumAge: 30000,
 			timeout: 27000
 		}			
@@ -140,7 +149,6 @@ app.controller('mapController', function($scope, $element, NgMap) {
 				$scope.createMarker(location);
 			}
 		}
-
 		if ($scope.markers.length !== 0) {
 			$scope.markerCluster.addMarkers($scope.markers);
 		}
@@ -232,6 +240,7 @@ app.controller('mapController', function($scope, $element, NgMap) {
 	
 			//received results of all requests 
 			if (counter == 3) {
+				console.log("all requests are concatenated in one array");
 				var idLocations = [],
 					distinctNearLocations = [];
 				var theLocation;
@@ -280,12 +289,14 @@ app.controller('mapController', function($scope, $element, NgMap) {
 				nearLocations.sort(function(a, b) {
 					return a.dLocation - b.dLocation;
 				});
+				console.log("nearby locations ordered by distance");
 				$scope.allPlaces = nearLocations;
 				console.log(nearLocations);
 			}
 		};
 		
 		//nearby search for categories: bar, cafe, restaurant
+		//https://developers.google.com/maps/documentation/javascript/places
 		var triggerNearbySearch = function() {
 			if (mapLoaded && gpsLatitude && gpsLongitude) {
 				service = new google.maps.places.PlacesService(map);
@@ -309,6 +320,7 @@ app.controller('mapController', function($scope, $element, NgMap) {
 					types: ['restaurant']
 				}, processResults);
 			}
+			console.log("nearby locations requested");
 		};
 
 		function getMarkers() {
@@ -333,6 +345,7 @@ app.controller('mapController', function($scope, $element, NgMap) {
 
 		//function for the button to show own position on the map 
 		$scope.position2 = function() {
+			console.log("show own position");
 			if (navigator && navigator.geolocation && available === true) {
 				map.setZoom(14);
 				$scope.latitude = gpsLatitude;
@@ -360,20 +373,17 @@ app.controller('mapController', function($scope, $element, NgMap) {
 			$scope.center = [loc.lat(), loc.lng()];
 			//different zoom levels for different typea
 			if (this.getPlace().types.indexOf("establishment") > -1) {
-				// establishment --> higher zoom
 				map.setZoom(17);
 			} else if (this.getPlace().types.indexOf("route") > -1) {
-				// route --> higher zoom
 				map.setZoom(15);
 			} else if (this.getPlace().types.indexOf("sublocality") > -1) {
-				// sublocality --> higher zoom
 				map.setZoom(15);
 			} else {
-				// geocode --> less zoom
 				map.setZoom(10);
 			}
 			$scope.longitude = loc.lng();
 			$scope.latitude = loc.lat();
+			console.log("position of the location from the search box");
 		};
 
 		function errorHandler() {
@@ -389,11 +399,14 @@ app.controller('mapController', function($scope, $element, NgMap) {
 			console.log("Error");
 		}
 
+
+		//detects another location on the map
 		$scope.dragEnd = function() {
 			$scope.latitude = $scope.map.getCenter().lat();
 			$scope.longitude = $scope.map.getCenter().lng();
 		};
-
+		
+		//detects another location on the map
 		$scope.centerChange = function() {
 			$scope.latitude = $scope.map.getCenter().lat();
 			$scope.longitude = $scope.map.getCenter().lng();
