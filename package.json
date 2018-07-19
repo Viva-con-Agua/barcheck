@@ -1,0 +1,26 @@
+{
+  "name": "barcheck",
+  "version": "0.9.0",
+  "private": true,
+  "description": "Viva Con Agua Barcheck app",
+  "scripts": {
+    "update-webdriver": "webdriver-manager update",
+    "prep": "npm run update-webdriver",
+    "server": "http-server -a localhost -p 8000 -c-1 ./",
+    "e2e": "protractor testing/protractor.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Viva-con-Agua/barcheck.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Viva-con-Agua/barcheck/issues"
+  },
+  "homepage": "https://github.com/Viva-con-Agua/barcheck#readme",
+  "dependencies": {
+    "http-server": "^0.11.1",
+    "protractor": "^5.4.0"
+  }
+}

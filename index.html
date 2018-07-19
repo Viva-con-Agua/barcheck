@@ -7,7 +7,7 @@
         margin: 0 !important;
       }
       .angular-google-map-container { height: 450px; }
-      
+
       @font-face {
         font-family: 'lato';
         src: url("sources/fonts/Lato-Regular.ttf");
@@ -51,7 +51,7 @@
     <title>Viva Con Agua</title>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
     <link rel="stylesheet" href="style/vca.css">
-    
+
 <!-- start Mixpanel -->
 <script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
 0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
@@ -69,23 +69,23 @@ mixpanel.init("cf55ee0457511a198716cc4edbcc9de8");</script>
       <div layout="column" layout-align="top center" flex>
         <md-toolbar id="nav" ng-show="navigation" back-img="sources/img/Background_dunkel.jpg">
           <div class="md-toolbar-tools">
-          	
+
             <md-button name="menu" ui-sref="homeWithMap" class="md-icon-button md-primary new" >
               <md-icon class="new" md-svg-icon="sources/img/icons/logo_vca_app.svg"></md-icon>
             </md-button>
             <span flex></span>
             <md-button name="Logout" ng-click="logout()" class="md-icon-button md-primary">
               <md-icon md-svg-icon="sources/img/icons/logout.svg"></md-icon>
-            </md-button> 
+            </md-button>
            <!-- <form>
 				 <input type="image" class="burgermenu" src="sources/img/BurgerMenu.png" ng-click="toggleRight()">
 			</form> -->
-            
+
           </div>
         </md-toolbar>
         <div style="width:90%; height:100%" ui-view></div>
       </div>
-  
+
     </section>
     <!-- Angular Material Library requires certain Angular.js Libraries -->
     <script src="sources/libraries/jquery.min.js"></script>
@@ -100,7 +100,7 @@ mixpanel.init("cf55ee0457511a198716cc4edbcc9de8");</script>
     <script src="sources/libraries/angular-google-maps.js"></script>
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyDhtoeLxDBfWkIQIaqboh8hPonTikRlY9o&libraries=places"></script>
 <!--	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&key=AIzaSyDhtoeLxDBfWkIQIaqboh8hPonTikRlY9o"></script>-->
-  
+
     <script src="sources/libraries/ngGeolocation.js"></script>
     <script src="sources/libraries/angular-material.min.js"></script>
     <script src="sources/libraries/ngAutocomplete.js"></script>
