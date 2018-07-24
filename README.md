@@ -72,27 +72,38 @@ The app will be available via localhost:8080
 3. Edit / Run the App (-> No webserver specification required, because the Web-IDE provides one for the runtime of the app)
 
 ## Testing
-We use [Protractor](http://www.protractortest.org/#/) for testing. The Protractor tests do not replace Unit Testing!
+### End-to-end testing
+We use [Protractor](http://www.protractortest.org/#/) for end-to-end testing. The Protractor tests do not replace Unit Testing!
 
-### Initial local Setup
-1. Get Protractor from npm (nodejs required):
-```
-npm install -g protractor
-```
-2. Get binaries for webserver:
-```
-webdriver-manager update
-```
-3. Run the tests:
-```
-protractor testing.js
-```
-4. See the command line output for results
+#### Initial local Setup
+0. Install node.js (if you haven't done yet)
 
-5. Run the tests every time you are about to commit.
+1. Navigate to the root directory of this project and execute
+```
+npm install
+```
+2. Run the following command to finalize the test setup
+```
+npm run prep
+```
 
-### Writing Tests
+#### Test execution
+1. Open a new command line window and navigate to the project's root directory
+
+2. Run the following command to start a server that serves the source code files for testing
+```
+npm run server
+```
+3. Run the Protractor tests by executing the following command
+```
+npm run e2e
+```
+
+#### Writing Tests
 See the Protractor API reference for the syntax. The test-spec.js file contains the most important commands.
+
+### Unit-tests
+TODO
 
 ## Working with custom directives
 See [this](https://github.com/Viva-con-Agua/barcheck/commit/d279760a3f269ec2b6834eda5842398ec40307ae) commit to get an idea of how to modularize your code to delete duplicates.
