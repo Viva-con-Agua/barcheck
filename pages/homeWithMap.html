@@ -6,14 +6,13 @@
 	
 	<div>
 	<form>
-		  <input type="image" class="icon burgermenu" src="sources/img/BurgerMenu.png" ng-click="toggleRight()">
+		  <input id="burgermenu" type="image" class="icon burgermenu" src="sources/img/BurgerMenu.png" ng-click="toggleRight()">
 	</form>
 	</div> <!-- burger button -->
 	
 	<div layout="row" class="categoriesonmap">
       <md-input-container>
         <label>SELECT CATEGORIES</label>
-        	
         <md-select ng-model="selectedCategories"
                    md-on-close="clearSearchTerm()"
                    data-md-container-class="selectdemoSelectHeader"
@@ -34,7 +33,7 @@
     </div>
     </div>
 
-    <ng-map id="map" default-style="false" fullscreen-control="false" map-type-control="false" center="[{{latitude}}, {{longitude}}]" zoom="{{zoomLevel}}" on-dragend="dragEnd()" on-idle="centerChange()">
+    <ng-map id="map" default-style="false" fullscreen-control="false" map-type-control="false" center="[{{latitude}}, {{longitude}}]" zoom="{{zoomLevel}}" on-dragend="centerChange()" on-idle="centerChange()">
 	<!-- https://developers.google.com/maps/documentation/javascript/events -->
           <info-window id="myInfoWindow" position="current-location">
         	<div ng-non-bindable>
@@ -57,7 +56,7 @@
     	<input type="image" ng-click="swipedUp = !swipedUp" class="arrow" ng-class="{rotated: swipedUp}" src="sources/img/arrow_up.svg">
     	
     <div ng-repeat="place in allPlaces">
-    <button class="accordion" ng-click="toggleItem(place, places)">
+    <button class="accordion" ng-click="toggleItem(place)">
     	<span>{{place.name}}</span><span class="icon-right" ng-if="place.water"><input type="image" class="icon plus" src="sources/img/vcatropfen.png"></span><span ng-if="!place.water"><input type="image" class="icon plus" src="sources/img/plus.png">
 	</span><span class="clearfix"></span></button>
 
@@ -65,7 +64,6 @@
 		<md-progress-circular md-mode="indeterminate" ng-show="place.loading"></md-progress-circular>
 	  	{{place.formatted_address}}
 	  	<div ng-if="place.opening_hours"> <br>
-	  		
 	  		{{place.opening_hours}}
 	  	<!--	<ul>
 	  			<li ng-repeat="text in place.opening_hours.weekday_text">

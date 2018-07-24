@@ -1,4 +1,11 @@
 exports.config = {
+  framework: 'jasmine',
+  seleniumAddress: 'http://localhost:4444/wd/hub',
+  specs: ['spec.js']
+};
+
+
+/*exports.config = {
   specs: ['testing/test-spec.js'],
   capabilities: {
     browserName: 'chrome',
@@ -7,4 +14,4 @@ exports.config = {
     deviceName: 'Android Emulator'
   },
   allScriptsTimeout: 50000
-};
+};*/

@@ -1,4 +1,13 @@
-describe('angularjs homepage todo list', function() {
+describe('Protractor Demo App', function() {
+  it('should have a title', function() {
+    browser.get('http://juliemr.github.io/protractor-demo/');
+
+    expect(browser.getTitle()).toEqual('Super Calculator');
+  });
+});
+
+
+/*describe('angularjs homepage todo list', function() {
   it('Open menu', function() {
     browser.get('http://localhost:8080');
     browser.ignoreSynchronization = true;
@@ -8,7 +17,7 @@ describe('angularjs homepage todo list', function() {
     browser.sleep(7000);
     element(by.name('locationsSearch')).click();
     browser.sleep(7000);
-/*
+
     element(by.model('todoList.todoText')).sendKeys('write first protractor test');
     element(by.css('[value="add"]')).click();
 
@@ -19,6 +28,6 @@ describe('angularjs homepage todo list', function() {
     // You wrote your first test, cross it off the list
     todoList.get(2).element(by.css('input')).click();
     var completedAmount = element.all(by.css('.done-true'));
-    expect(completedAmount.count()).toEqual(2); */
+    expect(completedAmount.count()).toEqual(2); 
   });
-});
+}); */
