@@ -1,0 +1,38 @@
+namespace "barchecker-db";
+
+context locationtable {
+
+    /*@@layout{"layoutInfo":{"x":-234,"y":-66.5}}*/
+    entity vcalocations {
+        key ID             : Integer64 not null;
+            NAME           : String(60);
+            STREET         : String(60);
+            AADDRESS       : String(60);
+            POSTCODE       : Integer;
+            CITY           : String(60);
+            CATEGORYID     : Integer;
+            WATER          : String(1);
+            CAPS_NAME      : String(60);
+            IMAGINE        : String(1);
+            USER           : String(100);
+            LATITUDE       : String(50);
+            LONGITUDE      : String(50);
+            WHY_NOT        : String(1);
+            WHY_NOT_BEFORE : String(1);
+            GLAS_330       : String(1);
+            PET_500        : String(1);
+            GLAS_750       : String(1);
+            PET_1000       : String(1);
+            TRIO_750       : String(1);
+            PET_750        : String(1);
+            COMMENT        : String(500);
+            MONDAY         : String(100);
+            TUESDAY        : String(100);
+            WEDNESDAY      : String(100);
+            THURSDAY       : String(100);
+            FRIDAY         : String(100);
+            SATURDAY       : String(100);
+            SUNDAY         : String(100);
+            PLACE_ID       : String(300);
+    };
+};

@@ -1,0 +1,29 @@
+ID: barchecker_hana
+_schema-version: '3.1'
+version: 0.0.1
+modules:
+  - name: barchecker-db
+    type: hdb
+    path: barcheck_cf/barchecker-db
+    requires:
+      - name: hdi_barchecker-db
+  - name: barchecker-node
+    type: nodejs
+    path: barcheck_cf/barchecker-node
+    provides:
+      - name: barchecker-node_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: hdi_barchecker-db
+    parameters:
+      memory: 128M
+resources:
+  - name: hdi_barchecker-db
+    parameters:
+      config:
+        schema: BARCHECKER_HANA
+        database_id: 23cf2f04-e929-4973-938e-2b5963744661
+    properties:
+      hdi-container-name: '${service-name}'
+    type: com.sap.xs.hdi-container
