@@ -1,0 +1,16 @@
+<div layout="column" ng-controller="ToiletPaperDecisionCtrl">
+  <fieldset class="standard">
+     <legend>Warum nicht?</legend>
+     <div layout="column" layout-wrap flex>
+        <md-checkbox class="md-primary" ng-repeat="reason in reasons" ng-click="toggle(reason, selected)">
+          {{reason.text}}
+        </md-checkbox>
+     </div>
+  </fieldset>
+  <md-button class="md-primary md-raised" ng-click="goSendSupporter()">
+    Weiter
+  </md-button>
+  <md-button class="md-primary md-raised" ui-sref="locations-toilet-paper-decision">
+    Zurück
+  </md-button>
+</div>

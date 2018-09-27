@@ -1,0 +1,19 @@
+{
+  "hcpdeploy": {
+    "account": "acb28be61",
+    "name": "vivaconagua",
+    "lastVersionWeTriedToDeploy": "1.67"
+  },
+  "build": {
+    "targetFolder": "dist",
+    "sourceFolder": "webapp",
+    "buildRequired": true
+  },
+  "translation": {
+    "translationDomain": "",
+    "supportedLanguages": "",
+    "defaultLanguage": "",
+    "defaultI18NPropertyFile": "",
+    "resourceModelName": ""
+  }
+}

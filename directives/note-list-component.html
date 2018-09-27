@@ -1,0 +1,11 @@
+<md-list>
+  <md-list-item ng-repeat="note in notes" class="md-3-line md-long-text">
+    <div class="md-list-item-text">
+      <h3>{{ note.author }}</h3>
+      <h4>{{ note.createdOn }}</h4>
+      <p>
+        {{note.text}}
+      </p>
+    </div>
+  </md-list-item>
+</md-list>

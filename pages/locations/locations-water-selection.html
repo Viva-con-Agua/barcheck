@@ -1,0 +1,20 @@
+<div layout="column" layout-align="center center" ng-controller="WaterDecisionCtrl">
+  <h3 class=" texcenter textGrayBlue">What kind of water/bottle do you see?</h3>
+
+  <div layout="row" layout-align="center end" layout-wrap>
+	 <div class="col-md-3 col-sm-4 col-xs-6" ng-value="image" ng-repeat="image in property.imageURLs">
+      <img ng-value="image" src={{image}} ng-click="selected_images[image] = {selected: !selected_images[image].selected }; selected_images(image)"
+      class="img-responsive" ng-class="{ 'selected-image': selected_images[image].selected }" 
+    	style="max-height: 10em;" alt="" title="">
+	</div>
+	</div>
+  <br>
+    <footer>
+        <div layout="column" layout-align="center center">
+        	<md-button class="btn2" ng-click="makeComment()">continue</md-button>
+            <md-button class='btn1' ng-click="goBack()">
+            	back
+            </md-button>
+        </div>
+    </footer>
+</div>

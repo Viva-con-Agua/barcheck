@@ -1,0 +1,32 @@
+<div layout="column" layout-align="center" ng-controller="locationsDetailCtrl">
+  <location-header location="selectedLocation" category-name="getCategoryName(selectedLocation.categoryIndex)" source="getSourceForIndex(selectedLocation.categoryIndex)"></location-header>
+  <md-tabs md-selected="tabIndex" md-dynamic-height md-border-bottom md-stretch-tabs="yes">
+    <md-tab label="Info">
+      <location-info-form
+        street-model="selectedLocation.address.street"
+        city-model="selectedLocation.address.city"
+        postcode-model="selectedLocation.address.postcode"
+        form-name="locationInfoForm">
+      </location-info-form>
+	</md-tab>
+    <md-tab label="Water">
+      <div class="md-padding">
+      	<p class="textGrayBlue">Do you see the VcA water?</p>
+		<md-switch class="md-primary" ng-model="already" ng-change="updateAlready()">
+		</md-switch>
+		<p ng-if="!already" class="textGrayBlue">We can imagine to offer VcA water!</p>
+		<md-switch class="md-primary" ng-model="imagine" ng-if="!already" ng-change="updateImagine()">
+		</md-switch>
+      </div>
+    </md-tab>
+  </md-tabs>
+     <footer>
+  	
+        <div layout="column" layout-align="center center">
+        	<md-button class="btn2" ng-click="saveChanges()" ui-sref="thankyou">save</md-button>
+            <md-button class='btn1' ng-click="goBack()">
+            	back
+            </md-button>
+        </div>
+    </footer>
+</div>

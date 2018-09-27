@@ -1,0 +1,550 @@
+html, body {
+	font-family: 'lato';
+	height: 100%
+	
+}
+
+html { 
+  background: no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.selected {
+    background-color: green !important;
+}
+.selecting {
+    background-color: yellow !important;
+}
+
+.textcenter {
+	text-align: center;
+}
+
+.textright {
+	text-align: right;
+}
+
+.textDarkBlue {
+	color: rgb(41,90,120);
+}
+
+.textGrayBlue {
+	color: rgb(149,166,179);
+}
+
+.textLightBlue {
+	color: rgb(63,170,210);
+}
+
+.textOrange {
+	color: rgb(230,131,82);
+}
+
+.textDarkGrey {
+	color: rgb(151,151,151);
+}
+
+.main {
+	text-align: center;
+	font-size: 0.70em;
+	color: white;
+}
+
+.switchNew {
+	margin-left: 1em;
+    margin-right: 0.8em;
+}
+/* home and feedback */
+.bubble2{
+	position: relative;
+	padding: 0.5em 0.5em 0.5em 0.5em;
+	border: solid;
+	border-radius: 0.25em;
+	box-shadow: 0.25em 0.25em 0.5em #888;
+}
+
+.gridIcons {
+	background-color: #FFD600;
+	border-radius: 1em;
+	
+}
+
+ /* presentation */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 35px;
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+} 
+
+ /* for BIG screens */
+.drop {
+	padding-top: 1%;
+    padding-bottom: 1%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    position: relative;
+    max-width: 30%;
+    height: auto;
+}
+/* for BIG screens, Siehst du Wasser image */
+.drop2 {
+	padding-top: 1%;
+    padding-bottom: 1%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    position: relative;
+    max-width: 10%;
+}
+
+.drop3 {
+	padding-top: 1%;
+    padding-bottom: 1%;
+    margin-top: 3em;
+    margin-bottom: 1em;
+    position: relative;
+    max-width: 20%;
+}
+
+.vcalogo-1 {
+	padding-top: 2%;
+   	margin-top: 1em;
+    width: 45%; 
+    height: auto;
+}
+
+
+/* for SMALL and MEDUIM Thank you page  */
+.vcalogo0 {
+	padding-top: 5%;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    width:100%; 
+    height:auto;
+}
+/* for SMALL and MEDUIM Thank you page  */
+.vcalogo {
+	padding-top: 2%;
+    padding-bottom: 2%;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    width: 7em; 
+    height: auto;
+}
+ /* for SMALL and MEDUIM screens */
+.vcalogo2 {
+	padding-top: 2%;
+    padding-bottom: 2%;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    position: relative;
+    max-width: 30%;
+    height: auto;
+}
+/* logo for presentation page SMALL screen */
+.vcalogo3 {
+	padding-top: 10%;
+    padding-bottom: 5%;
+    margin-top: 1em;
+    position: relative;
+    max-width: 40%; 
+    height: auto;
+}
+
+.vcalogo4 {
+	padding-top: 5%;
+    padding-bottom: 5%;
+    margin-top: 1em;
+    position: relative;
+    max-width: 100%; 
+    height: auto;
+}
+
+/* final drop on Thank you page SMALL */
+.vcalogo5 {
+	padding-top: 5%;
+    margin-top: 5em;
+    width: 8em; 
+    height: auto;
+}
+
+.googlemaps {
+    padding-top: 5%;
+}
+
+.progressbar {
+	padding-top: 25px;
+    padding-bottom: 20px;
+}
+
+/* Autocomplete text field */
+.style-4 {
+  padding: 10px;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border: none;
+  font-family: 'lato';
+  font-weight: bold;
+  font-size: 12pt;
+  border-bottom: solid 2px;
+  border-bottom-color: rgb(230, 131, 82);
+  transition: border 0.2s;
+  background: transparent;
+  width:90%;
+}
+
+.style-8 {
+  padding: 20px;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border: none;
+  font-family: 'lato';
+  font-weight: bold;
+  font-size: 12pt;
+  border-bottom: solid 2px;
+  border-bottom-color: rgb(230, 131, 82);
+  transition: border 0.2s;
+  background: transparent;
+  width:90%;
+}
+
+.btn2 {
+	background-color:rgb(63, 170, 210);
+	color: #EEEEEE;
+	font-size: 20px;
+	font-weight: bold;
+	padding: 0 6px 0 6px;
+	margin: 6px 8px 6px 8px;
+	border-radius: 20px;
+	text-align: center;
+	text-transform: uppercase;
+	border: none;
+	outline: none;
+	width: 260px;
+}
+
+.btn1 {
+	background-color: #EEEEEE; /* White */
+	color:rgb(41, 90, 120);  /* Text */
+	font-size: 20px;
+	font-weight: bold;
+	padding: 0 6px 0 6px;
+	margin: 6px 8px 6px 8px;
+	border-radius: 20px;
+	text-align: center;
+	text-transform: uppercase;
+	text-decoration:none;
+	border: solid 0.02em;
+	outline: none;
+	border-color: rgb(149,166,179);
+	width: 300px;
+}
+.btn_login {
+	background-color:transparent;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	padding: 0 6px 0 6px;
+	margin: 6px 8px 6px 8px;
+	border-radius: 20px;
+	text-align: center;
+	text-transform: uppercase;
+	border: solid;
+	outline: none;
+	width: 200px;
+}
+
+/* tick am ende SMALL screen */
+.tick {
+	padding-top: 5%;
+    padding-bottom: 2%;
+    margin-top: 1em;
+    position: relative;
+    max-width: 30%; 
+    height: auto;
+    fill: #2196F3;
+}
+
+md-checkbox.new .md-icon {
+	background-color: #FAFAFA;
+	border-radius: 40px;
+	border-width: 0.1px;
+	border-color: #FAFAFA;
+}
+
+md-card.new {
+	margin-bottom: 5%;
+	margin-top: 10%;
+}
+
+.icon-image {
+    position: relative;
+    max-width: 105%;
+    height: auto;
+}
+
+.icon-image2 {
+    position: relative;
+    margin:0.2em;
+    max-width: 50%;
+    height: auto;
+}
+
+.icon-image3 {
+    position: relative;
+    margin:0.2em;
+    width: 30%;
+    height: auto;
+}
+
+.selected-image {
+  border: 3px solid rgb(63,170,210);
+  background: rgb(63,170,210);
+  opacity: 0.5;
+}
+
+div[back-img]{
+    width: 100%;
+    height:500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+md-icon.new {
+	font-size:40px;
+	height: 40px;
+	width: 40px;
+}
+
+md-icon.category {
+	margin:0.1em;
+	padding-bottom:1.5px;
+	padding-right:2px;
+}
+
+md-icon.summary {
+	display:flex;
+}
+
+.md-button.md-icon-button.new {
+	font-size:50px;
+	height: 50px;
+	width: 50px;
+}
+
+md-input-container.upgrade {
+	margin: 0px;
+}
+
+.selectdemoSelectHeader {
+  /* Please note: All these selectors are only applied to children of elements with the 'selectdemoSelectHeader' class */ }
+.selectdemoSelectHeader .demo-header-searchbox {
+    border: none;
+    outline: none;
+    height: 100%;
+    width: 100%;
+    padding: 0; }
+.selectdemoSelectHeader .demo-select-header {
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12);
+    padding-left: 10.667px;
+    height: 48px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: auto; }
+.selectdemoSelectHeader md-content._md {
+    max-height: 240px; }
+    
+.why {
+	margin-top: 3em;
+    margin-bottom: 2em;
+}
+
+.why2 {
+	margin-top: 3em;
+}
+
+.why3 {
+	margin-top: 1.5em;
+}
+
+
+h3.update {
+	-webkit-margin-before: 0.5em;
+    -webkit-margin-after: 0.5em;
+}
+
+ng-map {
+	position:absolute;
+	width:100%; 
+	height:100%;
+	left: 0;
+	z-index:0;
+}
+
+#searchBox{
+	position:absolute;
+	z-index:9999;
+	margin:10px;
+	left:0;
+	padding:5px;
+	width:70%;
+	max-width:300px;
+}
+
+.icon{
+	position:absolute;
+	z-index:99999;
+	margin:10px;
+    max-width: 40px; 
+    height: auto;
+}
+
+.burgermenu{
+	right: 0;
+}
+.position{
+	left: 0;
+    bottom:0;
+}
+.plus{
+	position: relative;
+	margin:0px;
+	float:right;
+	height:20px;
+}
+
+.categoriesonmap{
+	position:absolute;
+	margin:10px;
+	z-index: 1;
+	left:0;
+	top:30px;
+	width:150px;
+}
+
+.elevatedSelect {
+	z-index:9999;
+}
+
+#sidebar{
+	z-index:99999;
+	background:transparent;
+	
+}
+
+#swipeup{
+	position:absolute;
+	z-index:9999;
+	bottom:0;
+	height: 50px;
+	text-align:center;
+	left:0;
+	right:0;
+	overflow: hidden;
+	transition: all 1s;
+	-webkit-transition: all 1s;
+}
+
+#swipeup.swipedUp {
+	height: 50%;
+	overflow: scroll;
+}
+
+/* for testing */
+#appBody {
+	overflow: hidden;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    /*display: none;*/
+    overflow: hidden;
+}
+
+.clearfix{
+	clear:both;
+}
+
+.water-list:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.water-wrapper {
+	
+}
+
+.water-wrapper:nth-child(3n):after {
+	clear: both;
+	content: "";
+	display: table;
+}
+
+.water{
+	display: block;
+	position: relative;
+    float: left;
+    width: 33.3%;
+    margin: 0;
+    padding: 0;
+}
+/*
+#navigate{
+	text-align:center;
+}*/
+
+.arrow{
+	position: relative;
+    width: 60px;
+}
+
+.arrow.rotated {
+	transform: rotate(180deg);
+}
+
+#moreinfos{
+	z-index:999999999999;
+}
+
+
+@media(min-width:920px){
+	.icon{
+    max-width: 50px; 
+}
+}

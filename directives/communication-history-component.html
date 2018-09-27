@@ -1,0 +1,10 @@
+<md-list>
+  <md-list-item class="md-3-line" ng-repeat="con in conversations">
+    <md-icon md-svg-icon="{{con.src }}"></md-icon>
+    <div class="md-list-item-text">
+      <h3 ng-ig="{{con.type == 'mail' || con.type == 'note'}}"> {{ con.info }} </h3>
+      <h4>{{ con.author }}</h4>
+      <p> {{ con.createdOn}} </p>
+    </div>
+  </md-list-item>
+</md-list>

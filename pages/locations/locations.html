@@ -1,0 +1,37 @@
+<div layout="column" layout-align="center center">
+	<img class="vcalogo4 flex" src="sources/img/header/this_is_create_location_4.png"/>
+	
+	
+	<!--<md-card class="new">
+	<md-card-title>
+		<md-card-title-text>
+			<span class="md-headline textcenter">LOCATIONS</span>
+		</md-card-title-text>
+		<md-card-title-media>
+			<img ng-src="sources/img/Locations_yel.png" style="" class="md-media-sm card-media"/>
+		</md-card-title-media>
+	</md-card-title>
+	</md-card>-->
+</div> 
+
+<div layout="column" layout-align="center center" ng-controller="TestCtrl">
+		<!-- <img class="vcalogo2"  hide-gt-sm flex src="sources/img/vcalogo_blue.png"/>
+		<img class="drop" hide show-gt-sm flex src="sources/img/vcalogo_blue.png"/> -->
+
+	<input type="text" id="Autocomplete" ng-model="autocomplete" 
+      class="style-4" ng-autocomplete options="options1" details="details1" initial-address="initialAddress" placeholder = "SEARCH LOCATION"/>
+	<br>
+
+	
+  <footer>
+        <div layout="column" layout-align="center center">
+
+           <md-button id="search" class="btn2" ng-click="save()">
+            	search
+            </md-button>
+            <md-button class="btn1" ng-click="goBack()">
+            	back
+            </md-button>
+        </div>
+   </footer>
+</div>

@@ -1,0 +1,23 @@
+<div layout="column" layout-align="center center" ng-controller="WaterDecisionCtrl">
+   <img class="vcalogo-1" hide-gt-sm flex height="auto" src="sources/img/VcA_330ml_Doppel_web2.png">
+   <img class="drop3" hide show-gt-sm flex src="sources/img/VcA_330ml_Doppel_web2.png">
+   <h3 class="textGrayBlue update">Do you see VcA water?</h3>
+	
+	
+	<div class="switchNew" layout=row>
+   		<h3 class= "textOrange">NO</h3>
+   		<md-switch class = "md-primary" ng-model="data"></md-switch>
+		<h3 class = "textLightBlue">YES</h3>
+   </div>
+   
+   <footer>
+        <div layout="column" layout-align="center center">
+            <md-button class='btn2' ng-click="continueTo()">
+            	continue
+            </md-button>
+            <md-button class='btn1' ng-click="goBack()">
+            	back
+            </md-button>
+        </div>
+    </footer>
+</div>

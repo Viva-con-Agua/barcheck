@@ -1,0 +1,17 @@
+<md-dialog aria-label="Ansprechpartner hinzufügen">
+  <md-dialog-content>
+    <md-list flex>
+      <md-list-item ng-repeat="contact in allContacts" class="md-2-line" ng-click="contactPressed(contact.id)">
+        <img ng-src="{{contact.source}}" class="md-avatar" />
+        <div class="md-list-item-text" layout="column">
+          <h3>{{ contact.vorname + ' ' + contact.name }}</h3>
+          <p>{{ contact.job }}</p>
+        </div>
+      </md-list-item>
+    </md-list>
+    <md-button ng-click="addNewContact()">
+      Neu hinzufügen
+    </md-button>
+  </md-dialog-content>
+  <h3 ng-if="allContacts.length === 0">No items</h3>
+</md-dialog>

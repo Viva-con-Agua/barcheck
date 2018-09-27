@@ -1,0 +1,37 @@
+<div layout="column" layout-fill ng-controller="ManualAdressCtrl">
+  <!-- <h3 style="color: blue;">{{locationName}}</h3> -->
+  <h3 class = "textcenter textGrayBlue">Address</h3>
+  <md-input-container md-no-float>
+    <input type="text" placeholder="Name" ng-model="locationName" name="nameInput">
+  </md-input-container>
+   <form name="formName">
+   		
+   <md-input-container md-no-float>
+   	<input id="Address" places-auto-complete types="['establishment', 'geocode']" on-place-changed="address()" placeholder="Address" [placeholder]="placeholderName" name="addressInput"/>
+	</md-input-container>
+
+<!--     <div layout="row">
+      <md-input-container>
+        <input placeholder="Street" ng-model="streetModel" >
+      </md-input-container>
+    </div>
+    <div layout="row">
+      <md-input-container>
+        <input type="number" maxlength="5" minlength="4" placeholder="ZIP code" ng-model="postcodeModel" >
+      </md-input-container>
+      <md-input-container>
+        <input placeholder="City" ng-model="cityModel" >
+      </md-input-container>
+    </div> -->
+  </form>
+    <footer>
+    	<div layout="column" layout-align="center center">
+    	<md-button class="btn2" ng-click="showConfirm($event)" ng-disabled="manualAddressForm.$invalid">
+		 continue
+		</md-button>
+        <md-button class='btn1' ng-click="goBack()">
+         back
+        </md-button>
+        </div>
+    </footer>
+</div>

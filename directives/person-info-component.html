@@ -1,0 +1,49 @@
+<div layout="column">
+  <div layout="row">
+    <md-input-container>
+      <input placeholder="Vorname" ng-model="vornameModel">
+    </md-input-container>
+    <md-input-container>
+      <input placeholder="Name" ng-model="nameModel">
+    </md-input-container>
+  </div>
+  <div>
+    <md-input-container>
+      <input placeholder="Straße" ng-model="streetModel">
+    </md-input-container>
+  </div>
+  <div layout="row">
+    <md-input-container>
+      <input placeholder="PLZ" ng-model="postcodeModel">
+    </md-input-container>
+    <md-input-container>
+      <input placeholder="Stadt" ng-model="cityModel">
+    </md-input-container>
+  </div>
+  <md-divider></md-divider>
+  <md-input-container>
+    <input placeholder="E-Mail" ng-model="emailModel">
+  </md-input-container>
+  <div>
+    <md-input-container>
+      <input placeholder="Telefon" ng-model="telefonModel">
+    </md-input-container>
+  </div>
+  <div>
+    <md-input-container>
+      <input placeholder="Job" ng-model="jobModel">
+    </md-input-container>
+  </div>
+  <fieldset class="standard" layout="column">
+    <legend>Newsletter</legend>
+    <md-checkbox ng-model="newsletter.vca" class="md-warn">
+      Viva Con Agua
+    </md-checkbox>
+    <md-checkbox ng-model="newsletter.events"class="md-warn">
+      Events
+    </md-checkbox>
+  </fieldset>
+  <md-switch aria-label="stPauliFan" class="md-warn">
+    St. Pauli Fan
+  </md-switch>
+</div>

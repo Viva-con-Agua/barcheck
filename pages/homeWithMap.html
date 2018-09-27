@@ -1,0 +1,105 @@
+<div ng-controller="mapController">
+	<div>	
+	<div>
+	<input id="searchBox" places-auto-complete types="['establishment', 'geocode']" on-place-changed="placeMarker()" placeholder = "Search Box" circle-bounds="{{bounds}}"   component-restrictions="{country: ['de', 'ch', 'at']}"  />
+	</div> <!-- #searchBox -->
+	
+	<div>
+	<form>
+		  <input id="burgermenu" type="image" class="icon burgermenu" src="sources/img/BurgerMenu.png" ng-click="toggleRight()">
+	</form>
+	</div> <!-- burger button -->
+	
+	<div layout="row" class="categoriesonmap">
+      <md-input-container>
+        <label>SELECT CATEGORIES</label>
+        <md-select ng-model="selectedCategories"
+                   md-on-close="clearSearchTerm()"
+                   data-md-container-class="selectdemoSelectHeader"
+                   class="elevatedSelect"
+                   multiple>
+          <md-select-header class="demo-select-header">
+            <input ng-model="searchTerm"
+                   type="search"
+                   placeholder="Search for a category.."
+                   class="demo-header-searchbox md-text">
+          </md-select-header>
+          <md-optgroup label="categories">       
+            <md-option ng-value="category" ng-repeat="category in categories |
+              filter:searchTerm" ng-click="filterChanged(category)">{{category}}</md-option>
+          </md-optgroup>
+        </md-select>
+      </md-input-container>
+    </div>
+    </div>
+
+    <ng-map id="map" default-style="false" fullscreen-control="false" map-type-control="false" center="[{{latitude}}, {{longitude}}]" zoom="{{zoomLevel}}" on-dragend="centerChange()" on-idle="centerChange()">
+	<!-- https://developers.google.com/maps/documentation/javascript/events -->
+          <info-window id="myInfoWindow" position="current-location">
+        	<div ng-non-bindable>
+            <h4>{{selectedLocation.NAME}}</h4>
+        	<p><span>{{selectedLocation.STREET}}</span>,
+        	<span>{{selectedLocation.CITY}}</span></p>
+        	
+        	<span>{{selectedLocation.MONDAY}}</span><br>
+   			<span>{{selectedLocation.TUESDAY}}</span><br>
+        	<span>{{selectedLocation.WEDNESDAY}}</span><br>
+        	<span>{{selectedLocation.THURSDAY}}</span><br>
+        	<span>{{selectedLocation.FRIDAY}}</span><br>
+        	<span>{{selectedLocation.SATURDAY}}</span><br>
+        	<span>{{selectedLocation.SUNDAY}}</span>
+            </div>
+        </info-window>
+    </ng-map>
+    
+ <div id="swipeup" ng-class="{swipedUp: swipedUp}">
+    	<input type="image" ng-click="swipedUp = !swipedUp" class="arrow" ng-class="{rotated: swipedUp}" src="sources/img/arrow_up.svg">
+    	
+    <div ng-repeat="place in allPlaces">
+    <button class="accordion" ng-click="toggleItem(place)">
+    	<span>{{place.name}}</span><span class="icon-right" ng-if="place.water"><input type="image" class="icon plus" src="sources/img/vcatropfen.png"></span><span ng-if="!place.water"><input type="image" class="icon plus" src="sources/img/plus.png">
+	</span><span class="clearfix"></span></button>
+
+	<div class="panel" ng-hide="!place.toggle">
+		<md-progress-circular md-mode="indeterminate" ng-show="place.loading"></md-progress-circular>
+	  	{{place.formatted_address}}
+	  	<div ng-if="place.opening_hours"> <br>
+	  		{{place.opening_hours}}
+	  	<!--	<ul>
+	  			<li ng-repeat="text in place.opening_hours.weekday_text">
+	  				{{ text }}<br>
+	  			</li>
+	  		</ul> all opening hours--> 
+		</div>
+		<div class="water-list"> 
+		<div class="water-wrapper" ng-if="place.GLAS330">
+		<img class="water" src="sources/img/water/330GLAS.png"/>
+		</div> 
+		<div class="water-wrapper" ng-if="place.PET500">
+		<img class="water" src="sources/img/water/500PET.png"/>
+		</div> 
+		<div class="water-wrapper" ng-if="place.GLAS750">
+		<img class="water" src="sources/img/water/750GLAS.png"/>
+		</div> 
+		<div class="water-wrapper" ng-if="place.PET1000">
+		<img class="water" src="sources/img/water/1000PET.png"/>
+		</div> 
+		<div class="water-wrapper" ng-if="place.TRIO750">
+		<img class="water" src="sources/img/water/750TRIO.png"/>
+		</div> 
+		<div class="water-wrapper" ng-if="place.PET750">
+		<img class="water" src="sources/img/water/750PET.png"/>
+		</div>
+		</div>
+		
+		<!-- link works with place id, VCA is just a placeholder -->
+		<div id="navigate clearfix"><a ng-href="https://www.google.com/maps/dir/?api=1&destination=VCA&destination_place_id={{place.place_id}}" target="_blank">Navigate</a></div>
+	</div>
+	</div>
+    </div><!-- #swipeUp -->
+    
+    <div>	
+    <form>
+		  <input type="image" class="icon position" src="sources/img/Position.png" ng-click="position2()">
+	</form>
+	</div> <!-- position button  -->

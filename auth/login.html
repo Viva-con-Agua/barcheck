@@ -1,0 +1,37 @@
+<md-dialog>
+	<div class="loginBox md-whiteframe-z1" layout="column">
+		<md-toolbar>
+			<h2 class="md-toolbar-tools">Login</h2>
+		</md-toolbar>
+		<div class="md-dialog-content">
+		<h3>Here you can log in with your TEST user</h3>
+		<form name="loginForm">
+			<md-input-container class="upgrade">
+				<input name="email" placeholder="E-mail address" required ng-model="email">
+				</input>
+			</md-input-container>
+			<!--
+			<div ng-messages="loginForm.email.$error" ng-show="loginForm.email.$dirty">
+				<div ng-message="required">Du brauchst eine Mail!</div>
+			</div>
+		-->
+			<md-input-container class="upgrade">
+				<input name="password" placeholder="Password" type="password" required ng-model="password">
+				</input>
+			</md-input-container>
+			
+			<!--<div ng-messages="loginForm.password.$error" ng-show="loginForm.password.$dirty && loginForm.password.$touched || loginForm.password.$submitted">
+				<div ng-message="required" style="color:rgb(230,131,82);">Wrong credentials. Please try again or contact info@vivaconagua.org to reset your Pool User.</div>
+			</div>-->
+			
+		
+		<div layout="column">
+			<br>
+			<md-button ng-disabled="loginForm.$invalid" class="md-primary md-raised" type="submit" ng-click="login()" id="submitlogin">
+				Submit
+			</md-button>
+		</div>
+		</form>
+	</div>
+	</div>
+</md-dialog>

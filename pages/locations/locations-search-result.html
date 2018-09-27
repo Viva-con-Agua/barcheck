@@ -1,0 +1,41 @@
+<div layout="column" layout-align="center center">
+	<img class="vcalogo4 flex" src="sources/img/header/this_is_create_location_4.png"/>
+
+<div ng-controller="locationSearchController">
+  <div layout="column" layout-align="center center">
+      
+    <md-list flex>
+    	<div layout="row" layout-sm="column" layout-align="space-around">
+    <!--<md-progress-circular ng-if="loading" md-mode="indeterminate"></md-progress-circular>-->
+    </div>
+      <md-list-item ng-repeat="location in locations" class="md-3-line" ng-click="itemPressed(location.ID)">
+        <div class="md-list-item-text" layout="column">
+          <h3>{{ location.NAME }}</h3>
+          <h4>{{ getCategoryName(location.CATEGORYID)}}</h4>
+          <p>{{ location.STREET }}, {{ location.POSTCODE }} {{ location.CITY }}</p>
+        </div>
+      </md-list-item>
+	<md-card class="bubble2" ng-if="showNoResults" >
+      <md-list-item class="secondary-button-padding">
+        <h3>The location has not yet been created!</h3><br>
+        
+      </md-list-item>
+      <md-list-item ng-if="showNoResults" class="secondary-button-padding">
+        <md-button id="notcreated" ui-sref="locations-create-category">
+            		<md-icon md-svg-src="{{getIcon()}}"></md-icon>
+            		<md-text>Click here to create!</md-text>
+            	</md-button>
+        <!--<md-button ui-sref="locations-create-category" class="md-raised md-accent">Neu hinzufügen</md-button>-->
+      </md-list-item>
+      	</md-card>
+    </md-list>
+  </div>
+    <footer>
+        	<div layout="column" layout-align="center center">
+            	<md-button class='btn1' ng-click="goBack()">
+            		back
+            	</md-button>
+            	
+        	</div>
+    </footer>
+</div>

@@ -1,0 +1,14 @@
+<div layout="column" ng-cloak ng-controller="contactsCreateCtrl">
+  <person-info-form
+    vorname-model="newContact.vorname"
+    name-model="newContact.name"
+    street-model="newContact.address.street"
+    postcode-model="newContact.address.postCode"
+    city-model="newContact.address.city"
+    email-model="newContact.email"
+    job-model="newContact.job"
+    telefon-model="newContact.telefon">
+  </person-info-form>
+  <md-button class="md-raised md-warn" ng-click="createPressed()">Anlegen</md-button>
+  <md-button class="md-raised md-primary" ui-sref="contacts">Zurück</md-button>
+</div>

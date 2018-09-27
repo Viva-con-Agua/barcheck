@@ -1,0 +1,17 @@
+<div layout="column" layout-align="center center" ng-controller="WaterDecisionCtrl">
+     <h3 class="textcenter why textGrayBlue">Why not?</h3>
+     <br>
+     <div layout="column" layout-align="center">
+        <md-checkbox class="new textDarkGrey" ng-repeat="(index, reason) in reasons" ng-click="sendSupporter1(index)">
+          {{reason.text}}
+        </md-checkbox>
+      </div>
+    <footer>
+        <div layout="column" layout-align="center center">
+        <!--	<md-button class="btn2" ng-click="sendSupporter1(index)">continue</md-button> -->
+            <md-button class='btn1' ng-click="goBack()">
+            	back
+            </md-button>
+        </div>
+    </footer>
+</div>

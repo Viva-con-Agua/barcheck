@@ -1,0 +1,15 @@
+<div layout="column" ng-controller="ToiletPaperDecisionCtrl">
+    <img width="100%" height="auto" src="sources/img/goldeimer.png">
+    <!-- To get a dynamic design e.g. getting pictures from a server,
+    switch to ng-src and supply via designService in the controller-->
+    <md-button class="md-raised" ng-click="goSendSupporter()">
+      Bereits Supporter
+    </md-button>
+    <md-button class="md-raised" ui-sref="locations-toilet-paper-decision-interest">
+      Interesse
+    </md-button>
+    <md-button class="md-raised" ui-sref="locations-toilet-paper-decision-no-interest">
+      Kein Interesse
+    </md-button>
+    <!-- no back button here *!! -->
+</div>
